@@ -117,6 +117,13 @@
       <path value="$PROJECT_DIR$/vendor/kornrunner/keccak" />
       <path value="$PROJECT_DIR$/vendor/sc0vu/web3.php" />
       <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/vendor/graze/guzzle-jsonrpc" />
+      <path value="$PROJECT_DIR$/vendor/simplito/elliptic-php" />
+      <path value="$PROJECT_DIR$/vendor/pear/math_biginteger" />
+      <path value="$PROJECT_DIR$/vendor/digitaldonkey/ecverify" />
+      <path value="$PROJECT_DIR$/vendor/digitaldonkey/ethereum-php" />
+      <path value="$PROJECT_DIR$/vendor/simplito/bn-php" />
+      <path value="$PROJECT_DIR$/vendor/simplito/bigint-wrapper-php" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.5.0" />

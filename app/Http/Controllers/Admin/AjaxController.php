@@ -151,4 +151,31 @@ class AjaxController extends Controller
         $articales = Groupproducts::where('status',1)->get();
         return response::json($articales);
     }
+
+    public function bindproduct(Request $request)
+    {
+        $p = Products::find($request->proId);
+        $data = array(
+            'id'=>$p->id,
+            'name'=>$p->name,
+            'starttime'=>strtotime($p->starttime),
+            'endtime'=>strtotime($p->endtime),
+            'price'=>$p->price,
+        );
+        return response::json($data);
+    }
+
+    public function postBindId(Request $request)
+    {
+        $p = Products::find($request->proid);
+        $p->bind = $request->bindid;
+        $p->status = 1;
+        $p->save();
+        $data = array(
+            'id'=> $p->id,
+            'bindid'=> $p->bind,
+        );
+        return response::json($data);
+    }
+
 }

@@ -34,7 +34,6 @@
     <!-- ==========  FOOTER : END =========== -->
         <p id="back-top" style="display: block;"> <a href="#top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a> </p>
         @include('themes.includes.script')
-
         <script type="text/javascript">
             function get_info_cart() {
                 var num = $('.cart_list li').length;

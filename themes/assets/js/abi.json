@@ -1,0 +1,328 @@
+[
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "p_id",
+        "type": "uint256"
+      },
+      {
+        "name": "seller",
+        "type": "address"
+      },
+      {
+        "name": "p_name",
+        "type": "string"
+      },
+      {
+        "name": "p_code",
+        "type": "string"
+      },
+      {
+        "name": "p_deadline",
+        "type": "uint256"
+      },
+      {
+        "name": "p_price",
+        "type": "uint256"
+      },
+      {
+        "name": "p_auction",
+        "type": "uint256"
+      },
+      {
+        "name": "status",
+        "type": "uint8"
+      },
+      {
+        "name": "orderid",
+        "type": "uint256"
+      }
+    ],
+    "name": "createProduct",
+    "outputs": [],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "orderid",
+        "type": "uint256"
+      },
+      {
+        "name": "buyer",
+        "type": "address"
+      },
+      {
+        "name": "buyer_name",
+        "type": "string"
+      },
+      {
+        "name": "buyer_email",
+        "type": "string"
+      },
+      {
+        "name": "Totalamount",
+        "type": "uint256"
+      },
+      {
+        "name": "quantity",
+        "type": "uint256"
+      }
+    ],
+    "name": "createOrder",
+    "outputs": [],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "products",
+    "outputs": [
+      {
+        "name": "p_id",
+        "type": "uint256"
+      },
+      {
+        "name": "seller",
+        "type": "address"
+      },
+      {
+        "name": "p_name",
+        "type": "string"
+      },
+      {
+        "name": "p_code",
+        "type": "string"
+      },
+      {
+        "name": "p_deadline",
+        "type": "uint256"
+      },
+      {
+        "name": "p_price",
+        "type": "uint256"
+      },
+      {
+        "name": "p_auction",
+        "type": "uint256"
+      },
+      {
+        "name": "status",
+        "type": "uint8"
+      },
+      {
+        "name": "orderid",
+        "type": "uint256"
+      },
+      {
+        "name": "init",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "orders",
+    "outputs": [
+      {
+        "name": "orderid",
+        "type": "uint256"
+      },
+      {
+        "name": "buyer",
+        "type": "address"
+      },
+      {
+        "name": "buyer_name",
+        "type": "string"
+      },
+      {
+        "name": "buyer_email",
+        "type": "string"
+      },
+      {
+        "name": "Totalamount",
+        "type": "uint256"
+      },
+      {
+        "name": "quantity",
+        "type": "uint256"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint256"
+      },
+      {
+        "name": "init",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "p_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "queryProduct",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "orderid",
+        "type": "uint256"
+      }
+    ],
+    "name": "queryOrder",
+    "outputs": [
+      {
+        "name": "buyer",
+        "type": "address"
+      },
+      {
+        "name": "buyer_name",
+        "type": "string"
+      },
+      {
+        "name": "buyer_email",
+        "type": "string"
+      },
+      {
+        "name": "Totalamount",
+        "type": "uint256"
+      },
+      {
+        "name": "quantity",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "bidder",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "quantity",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "Totalamount",
+        "type": "uint256"
+      }
+    ],
+    "name": "OrderCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "p_name",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "name": "p_price",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "p_auction",
+        "type": "uint256"
+      }
+    ],
+    "name": "ProductCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "message",
+        "type": "string"
+      }
+    ],
+    "name": "LogFailure",
+    "type": "event"
+  }
+]

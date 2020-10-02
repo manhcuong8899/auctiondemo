@@ -10,6 +10,16 @@ function getTotal($cart)
     return $total;
 }
 
+function getQty($cart)
+{
+    $total=0;
+    foreach ($cart as $index=>$value)
+    {
+        $total = $total + $value->qty;
+    }
+    return $total;
+}
+
 function getDownprice($cart)
 {
     $fee=0;

@@ -15,7 +15,7 @@
                                         <div class="number-of-colors"> <a href="{{url($list->slug)}}">{{$list->name}}</a> <span class="old">(Đang đấu giá)</span></div>
                                     </div>
                                     <h3><a href="{{url($list->slug)}}">Mã sản phẩm: {{$list->code}}</a></h3>
-                                    <div class="price"><span>Giá sàn: {{number_format($list->price,'8',',','.')}} ETH</span></div>
+                                    <div class="price"><span>Giá sàn: {{number_format($list->price,'2',',','.')}} ETH</span></div>
                                 </div>
                             </div>
                         </div>

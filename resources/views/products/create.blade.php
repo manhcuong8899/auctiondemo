@@ -4,7 +4,7 @@
         <section class="content">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thêm mới sản phẩm đấu giá</h3>
+                        <h3 class="box-title">Thêm mới phiên đấu giá</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -48,8 +48,7 @@
                                     <div class="col-md-6 form-group">
                                         <label>Trạng thái</label>
                                         <select class="form-control" name="status">
-                                            <option value="1" selected>Hiện</option>
-                                            <option value="0">Ẩn</option>
+                                            <option value="0" selected>Pending</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6 form-group">

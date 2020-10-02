@@ -49,9 +49,10 @@ class CartController extends Controller
     {
               $p = Products::find($request->productid);
         $CartItem = Cart::instance('cart')->add($p->id,$p->name,$request->quantity,
-            $p->price,[
+            $request->bind,[
                 'code'=> $p->code,
                 'model'=>$p->model,
+                'giasan'=> $p->price,
                 'slug'=> $p->slug,
                 'images'=> $p->images,
                 'coupons'=>0,
@@ -63,7 +64,8 @@ class CartController extends Controller
             'name'=>$p->name,
             'code'=>$p->code,
             'quantity'=>$request->quantity,
-            'price'=>$p->price,
+            'giasan'=>$p->price,
+            'price'=>$request->bind,
             'images'=>asset('public/images/products/'.$p->code.'/'.$p->images),
             'quantitycart'=>$request->quantity.' Sản phẩm',
             'pricecart'=>number_format($request->quantity*$request->bind,8,',','.'),

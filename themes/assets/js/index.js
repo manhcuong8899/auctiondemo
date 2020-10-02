@@ -1,5 +1,4 @@
 $(document).on('ready', function() {
-
 	$('.sort-dropdown ul.dropdown-menu li').click(function(){
 		$('.sort-dropdown .sort-active').html($(this).text());
 	});
@@ -8,10 +7,7 @@ $(document).on('ready', function() {
 		var $this = $(this);
 		var img = $this.attr('data-img-big');
 		$(this).closest('.info-view-color').closest('.info-product').closest('.item-box').find('.cover img').attr('src',img);
-		
 	});
-
-
 
 	$('.box-hide').hide();
 	$('.box-login').show();
@@ -29,7 +25,6 @@ $(document).on('ready', function() {
 		$('.box-hide').hide();
 		$('.'+$box_show).show();
 	}
-
 	$('.section-trending .owl-carousel').owlCarousel({
     	loop:true,
     	margin:10,

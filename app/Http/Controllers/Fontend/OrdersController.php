@@ -23,6 +23,11 @@ use VNPCMS\Orders\Orders;
 use VNPCMS\Products\Products;
 use Illuminate\Support\Facades\Response;
 use VNPCMS\Setting\Setting;
+use Web3\Web3;
+use Web3\Contract;
+use Web3\Providers\HttpProvider;
+use Web3\RequestManagers\HttpRequestManager;
+use Web3\Methods\Eth;
 
 
 class OrdersController extends Controller
@@ -30,13 +35,24 @@ class OrdersController extends Controller
 
     public function postorder(Request $request)
     {
+        $ch = curl_init();
+        // set URL and other appropriate options
+        curl_setopt($ch, CURLOPT_URL, "https://ropsten.infura.io/v3/b7f2ce93c320460eaaef396b9f547f7b");
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 2000);
+
+        // grab URL and pass it to the browser
+        curl_exec($ch);
+
+        // close cURL resource, and free up system resources
+        curl_close($ch);
+
         $cart =  Cart::instance('cart')->content();
         $total = getTotal($cart);
+        $qty = getQty($cart);
         $coupons = getDownprice($cart);
         $input = $request->all();
-
         $phone = $request->phone;
-
         $user = Auth::user();
         if(validatePhone($phone)==false){
             return Redirect()->back()->withErrors('Định dạng số điện thoại không đúng!')->withInput();
@@ -65,6 +81,31 @@ class OrdersController extends Controller
         $input['status'] = 1;
         /* Tạo dữ liệu bảng order*/
         $order = Orders::create($input);
+
+        $contractAddress ="0x3B50960f8C54b68B4a94bD5ADb0d173aa3ECbe8f";
+        $functionName = "createOrder";
+        $abi = file_get_contents(asset('public/contract/abi.json'));
+        $bytecode = file_get_contents(asset('public/contract/bytecode.txt'));
+        $web3 = new Web3('https://ropsten.infura.io/v3/b7f2ce93c320460eaaef396b9f547f7b');
+        $contract = new Contract($web3->provider, $abi);
+        $contract->at($contractAddress)->send('createOrder',
+            $order->id,
+            $request->address,
+            Auth::user()->full_name,
+            Auth::user()->email,
+            $total,
+            $qty,[
+                'from' => $request->address,
+                'value'=>$total,
+                'gas' => '0x200b20'],
+                function ($err, $result) use ($contract) {
+            if ($err !== null) {
+                 throw $err;
+            }
+            if ($result) {
+                 echo $result;
+            }
+        });
 
         /* Tạo dữ liệu bảng chi tiết order*/
         foreach($cart as $index=>$value)

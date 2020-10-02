@@ -3,7 +3,7 @@
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
-	<h1><b>Cấu hình thông tin chung Website</b></h1>
+	<h1><b>Quản lý cấu hình</b></h1>
 </section>
 
 <section class="content">
@@ -21,28 +21,42 @@
 								<div class="row">
 
 									<div class="col-md-2">
-										<label for="crmfooter">Chính sách Thanh toán*</label>
+										<label for="crmfooter">Địa chỉ Ví Sàn*</label>
 									</div>
 									<div class="col-md-10">
-										<div class="form-group {{ $errors->has('thanhtoan') ? ' has-error' : ' has-feedback' }}">
-											<textarea class="form-control" id="thanhtoan" type="text" name="thanhtoan" required rows="6"/>{{ old('thanhtoan') ? old('thanhtoan') : $settings['thanhtoan'] }}</textarea>
-											@if ($errors->has('thanhtoan'))
+										<div class="form-group {{ $errors->has('wallet') ? ' has-error' : ' has-feedback' }}">
+											<input type="text" class="form-control" id="wallet" name="wallet"  value="{{ old('wallet') ? old('wallet') : $settings['wallet'] }}" required/>
+											@if ($errors->has('wallet'))
 												<span class="help-block">
-												<strong>{{ $errors->first('thanhtoan') }}</strong>
+												<strong>{{ $errors->first('wallet') }}</strong>
 											</span>
 											@endif
 										</div>
 									</div>
 
 									<div class="col-md-2">
-										<label for="crmfooter">Chính sách vận chuyển*</label>
+										<label for="crmfooter">Địa chỉ Contract*</label>
 									</div>
 									<div class="col-md-10">
-										<div class="form-group {{ $errors->has('vanchuyen') ? ' has-error' : ' has-feedback' }}">
-											<textarea class="form-control" id="vanchuyen" type="text" name="vanchuyen" required rows="6"/>{{ old('vanchuyen') ? old('vanchuyen') : $settings['vanchuyen'] }}</textarea>
-											@if ($errors->has('vanchuyen'))
+										<div class="form-group {{ $errors->has('contractaddress') ? ' has-error' : ' has-feedback' }}">
+											<input type="text" class="form-control" id="contractaddress" name="contractaddress"  value="{{ old('contractaddress') ? old('contractaddress') : $settings['contractaddress'] }}" required/>
+											@if ($errors->has('wallet'))
 												<span class="help-block">
-												<strong>{{ $errors->first('vanchuyen') }}</strong>
+												<strong>{{ $errors->first('contractaddress') }}</strong>
+											</span>
+											@endif
+										</div>
+									</div>
+
+									<div class="col-md-2">
+										<label for="crmfooter">API KEY*</label>
+									</div>
+									<div class="col-md-10">
+										<div class="form-group {{ $errors->has('apikey') ? ' has-error' : ' has-feedback' }}">
+											<input type="text" class="form-control" id="apikey" name="apikey"  value="{{ old('apikey') ? old('apikey') : $settings['apikey'] }}" required/>
+											@if ($errors->has('apikey'))
+												<span class="help-block">
+												<strong>{{ $errors->first('apikey') }}</strong>
 											</span>
 											@endif
 										</div>
@@ -121,33 +135,6 @@
 											@if ($errors->has('description'))
 												<span class="help-block">
 												<strong>{{ $errors->first('description') }}</strong>
-											</span>
-											@endif
-										</div>
-									</div>
-									<div class="col-md-2">
-										<label for="orgname">Mã màu nền menu</label>
-									</div>
-									<div class="col-md-10">
-										<div class="form-group {{ $errors->has('backgroudmenu') ? ' has-error' : ' has-feedback' }}">
-											<input type="text" class="form-control" id="backgroudmenu" name="backgroudmenu" value="{{ old('backgroudmenu') ? old('backgroudmenu') : $settings['backgroudmenu'] }}" required/>
-											@if ($errors->has('backgroudmenu'))
-												<span class="help-block">
-												<strong>{{ $errors->first('backgroudmenu') }}</strong>
-											</span>
-											@endif
-										</div>
-									</div>
-
-									<div class="col-md-2">
-										<label for="orgname">Mã màu chữ menu</label>
-									</div>
-									<div class="col-md-10">
-										<div class="form-group {{ $errors->has('fontcolormenu') ? ' has-error' : ' has-feedback' }}">
-											<input type="text" class="form-control" id="backgroudmenu" name="fontcolormenu" value="{{ old('fontcolormenu') ? old('fontcolormenu') : $settings['fontcolormenu'] }}" required/>
-											@if ($errors->has('fontcolormenu'))
-												<span class="help-block">
-												<strong>{{ $errors->first('fontcolormenu') }}</strong>
 											</span>
 											@endif
 										</div>

@@ -18,19 +18,18 @@ Trang chủ
                             ?>
                             <div class="cover"><a href="{{url($list->slug)}}"><img src="{{asset('public/images/products/'.$list->model.'/'.$list->images)}}"alt="{{$list->name}}" class="imgresponsive"></a></div>
                             <div class="info-color" align="center">
-                                                                    @if($checktime==1)
-                                    <a href="{{url($list->slug)}}"><button class="p-btn startus-openbind" id="add_cart" value="{{$list->id}}">ĐANG MỞ ĐẤU GIÁ</button></a>
-                                    @endif
-                                    @if($checktime==2)
-
-                                        <button class="p-btn startus-endbind"><b>KẾT THÚC ĐẤU GIÁ</b></button>
-                                    @endif
-                                    @if($checktime==0)
+                                   @if($checktime==1 && $list->status==1 )
+                                    <a href="{{url($list->slug)}}"><button class="p-btn startus-openbind" value="{{$list->id}}">ĐANG MỞ ĐẤU GIÁ</button></a>
+                                    @elseif($checktime==2 && $list->status==1)
+                                    <button class="p-btn startus-endtime"><b>HẾT THỜI GIAN PHIÊN</b></button>
+                                    @elseif($checktime==2 && $list->status==2)
+                                    <a href="{{url($list->slug)}}"><button class="p-btn startus-endbind"><b>KẾT THÚC PHIÊN</b></button></a>
+                                    @else
                                         <button class="p-btn startus-notbind"><b>CHƯA MỞ ĐẤU GIÁ</b></button>
                                     @endif
                             </div><h3><a href="{{url($list->slug)}}"><b> {{$list->name}}</b></a></h3>
                             <h3><a href="{{url($list->slug)}}">Mã sản phẩm: {{$list->code}}</a></h3>
-                            <div class="price"><span>Giá sàn: {{number_format($list->price,'8',',','.')}} ETH</span></div>
+                            <div class="price"><span>Giá sàn: {{number_format($list->price,'2',',','.')}} ETH</span></div>
                         </div>
                     @endforeach
                 </div>
@@ -53,7 +52,7 @@ Trang chủ
                             </div>
                         </div>
                         <h3><a href="{{url($alist->options->slug)}}">Mã sản phẩm: {{$alist->options->code}}</a></h3>
-                        <div class="price"><span>Giá sàn: {{number_format($alist->price,'8',',','.')}} ETH</span></div>
+                        <div class="price"><span>Giá sàn: {{number_format($alist->price,'2',',','.')}} ETH</span></div>
                     </div>
                 @endforeach
             </div>

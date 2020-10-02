@@ -5,6 +5,12 @@
 <script src="<?php echo e(asset('themes/assets/vendors/owcarousel/owl.carousel.js')); ?>"></script>
 <script src="<?php echo e(asset('themes/assets/vendors/jcarousellite/jquery.jcarousellite.js')); ?>"></script>
 <script src="<?php echo e(asset('themes/assets/js/index.js')); ?>"></script>
+<script src="<?php echo e(asset('themes/assets/js/jquery.countdown.min.js')); ?>"></script>
+<script src="<?php echo e(asset('node_modules/web3/dist/web3.js')); ?>"></script>
+<script src="<?php echo e(asset('themes/assets/js/connect_metamask.js')); ?>"></script>
+<script src="<?php echo e(asset('themes/assets/js/dapp.js')); ?>"></script>
+<script src="<?php echo e(asset('themes/assets/js/eth.js')); ?>"></script>
+
 <script>
     $('#submitregister').click(function() {
         var email =  $('#myModalRegister [name="email"]').val();
@@ -31,13 +37,6 @@
         });
     });
 </script>
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-87490280-2', 'auto');
-    ga('send', 'pageview');
-</script>
-<script src="//rum-static.pingdom.net/pa-5e9bdc9c11c0700008000922.js" async></script>
+
+
 

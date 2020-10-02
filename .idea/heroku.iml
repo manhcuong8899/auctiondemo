@@ -11,6 +11,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/classpreloader/classpreloader" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/clue/stream-filter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/digitaldonkey/ecverify" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/digitaldonkey/ethereum-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dingo/api" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dingo/blueprint" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dnoegel/php-xdg-base-dir" />
@@ -29,6 +31,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/google/gax" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/google/grpc-gcp" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/google/protobuf" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/graze/guzzle-jsonrpc" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/grpc/grpc" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/promises" />
@@ -58,6 +61,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nwidart/laravel-modules" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/pear/math_biginteger" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-heroku-client/php-heroku-client" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/curl-client" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/discovery" />
@@ -95,6 +99,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/recursion-context" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/version" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/simplesoftwareio/simple-qrcode" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/simplito/bigint-wrapper-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/simplito/bn-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/simplito/elliptic-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/css-selector" />
@@ -132,6 +139,8 @@
           <root url="file://$MODULE_DIR$/vendor/classpreloader/classpreloader" />
           <root url="file://$MODULE_DIR$/vendor/clue/stream-filter" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
+          <root url="file://$MODULE_DIR$/vendor/digitaldonkey/ecverify" />
+          <root url="file://$MODULE_DIR$/vendor/digitaldonkey/ethereum-php" />
           <root url="file://$MODULE_DIR$/vendor/dingo/api" />
           <root url="file://$MODULE_DIR$/vendor/dingo/blueprint" />
           <root url="file://$MODULE_DIR$/vendor/dnoegel/php-xdg-base-dir" />
@@ -150,6 +159,7 @@
           <root url="file://$MODULE_DIR$/vendor/google/gax" />
           <root url="file://$MODULE_DIR$/vendor/google/grpc-gcp" />
           <root url="file://$MODULE_DIR$/vendor/google/protobuf" />
+          <root url="file://$MODULE_DIR$/vendor/graze/guzzle-jsonrpc" />
           <root url="file://$MODULE_DIR$/vendor/grpc/grpc" />
           <root url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
           <root url="file://$MODULE_DIR$/vendor/guzzlehttp/promises" />
@@ -179,6 +189,7 @@
           <root url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
           <root url="file://$MODULE_DIR$/vendor/nwidart/laravel-modules" />
           <root url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
+          <root url="file://$MODULE_DIR$/vendor/pear/math_biginteger" />
           <root url="file://$MODULE_DIR$/vendor/php-heroku-client/php-heroku-client" />
           <root url="file://$MODULE_DIR$/vendor/php-http/curl-client" />
           <root url="file://$MODULE_DIR$/vendor/php-http/discovery" />
@@ -216,6 +227,9 @@
           <root url="file://$MODULE_DIR$/vendor/sebastian/recursion-context" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/version" />
           <root url="file://$MODULE_DIR$/vendor/simplesoftwareio/simple-qrcode" />
+          <root url="file://$MODULE_DIR$/vendor/simplito/bigint-wrapper-php" />
+          <root url="file://$MODULE_DIR$/vendor/simplito/bn-php" />
+          <root url="file://$MODULE_DIR$/vendor/simplito/elliptic-php" />
           <root url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
           <root url="file://$MODULE_DIR$/vendor/symfony/console" />
           <root url="file://$MODULE_DIR$/vendor/symfony/css-selector" />
@@ -249,6 +263,8 @@
           <root url="file://$MODULE_DIR$/vendor/classpreloader/classpreloader" />
           <root url="file://$MODULE_DIR$/vendor/clue/stream-filter" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
+          <root url="file://$MODULE_DIR$/vendor/digitaldonkey/ecverify" />
+          <root url="file://$MODULE_DIR$/vendor/digitaldonkey/ethereum-php" />
           <root url="file://$MODULE_DIR$/vendor/dingo/api" />
           <root url="file://$MODULE_DIR$/vendor/dingo/blueprint" />
           <root url="file://$MODULE_DIR$/vendor/dnoegel/php-xdg-base-dir" />
@@ -267,6 +283,7 @@
           <root url="file://$MODULE_DIR$/vendor/google/gax" />
           <root url="file://$MODULE_DIR$/vendor/google/grpc-gcp" />
           <root url="file://$MODULE_DIR$/vendor/google/protobuf" />
+          <root url="file://$MODULE_DIR$/vendor/graze/guzzle-jsonrpc" />
           <root url="file://$MODULE_DIR$/vendor/grpc/grpc" />
           <root url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
           <root url="file://$MODULE_DIR$/vendor/guzzlehttp/promises" />
@@ -296,6 +313,7 @@
           <root url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
           <root url="file://$MODULE_DIR$/vendor/nwidart/laravel-modules" />
           <root url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
+          <root url="file://$MODULE_DIR$/vendor/pear/math_biginteger" />
           <root url="file://$MODULE_DIR$/vendor/php-heroku-client/php-heroku-client" />
           <root url="file://$MODULE_DIR$/vendor/php-http/curl-client" />
           <root url="file://$MODULE_DIR$/vendor/php-http/discovery" />
@@ -333,6 +351,9 @@
           <root url="file://$MODULE_DIR$/vendor/sebastian/recursion-context" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/version" />
           <root url="file://$MODULE_DIR$/vendor/simplesoftwareio/simple-qrcode" />
+          <root url="file://$MODULE_DIR$/vendor/simplito/bigint-wrapper-php" />
+          <root url="file://$MODULE_DIR$/vendor/simplito/bn-php" />
+          <root url="file://$MODULE_DIR$/vendor/simplito/elliptic-php" />
           <root url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
           <root url="file://$MODULE_DIR$/vendor/symfony/console" />
           <root url="file://$MODULE_DIR$/vendor/symfony/css-selector" />

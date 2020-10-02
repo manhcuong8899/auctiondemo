@@ -43,7 +43,6 @@ $('#StatusDialog').on('show.bs.modal', function(e) {
 
 $('#aUpdateDialog').on('show.bs.modal', function(e) {
     updaterurl = $(e.relatedTarget).data('updaterurl');
-
     productid = $(e.relatedTarget).data('productid');
     var inpput_price = 'price'+productid;
     var inpput_quantity = 'quantity'+productid;

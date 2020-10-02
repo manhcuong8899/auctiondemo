@@ -54,6 +54,12 @@ class HomeController extends Controller
     {
         return view('themes.products.success');
     }
+    public function web3()
+    {
+
+        return view('themes.products.web3');
+    }
+
 
     public function gioithieu()
     {

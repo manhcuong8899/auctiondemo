@@ -398,4 +398,20 @@ class ProductsController extends Controller
         return  view('products.seach',compact('products','cates'));
     }
 
+    public function status(Request $request)
+    {
+        $code = $request->code;
+        $status =0;
+        if($code=='active'){
+            $status =1;
+        }
+        if($code=='inactive'){
+            $status =2;
+        }
+        $cates = App::make(CateArticlesRepositoryInterface::class);
+        $cates = $cates->getData('products');
+        $products = Products::where('status',$status)->paginate(25);
+        return view('products.index',compact('products','cates','status'));
+    }
+
 }

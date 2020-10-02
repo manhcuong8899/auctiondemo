@@ -76,6 +76,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('products', 'ProductsController@index');
 
     Route::get('create/products', 'ProductsController@create');
+
+    Route::get('products/status/{code}', 'ProductsController@status');
+
     Route::post('products/create', 'ProductsController@postcreate');
     Route::post('products/aupdate/{id}/{price}/{quantity}/{starttime}/{endtime}','ProductsController@aupdate');
     Route::get('products/listdetail/{slug_name}','ProductsController@listdetail');
@@ -87,8 +90,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('products/import', 'ProductsController@import');
     Route::post('products/import', 'ProductsController@postimport');
     Route::get('products/seach', 'ProductsController@seach');
-
-
 
     /* Tips routes */
 
@@ -301,7 +302,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
 
     /* Ajax routes */
+    Route::post('bindproduct', 'AjaxController@bindproduct');
     Route::post('urlcategories', 'AjaxController@urlcategories');
+    Route::post('updateprobind', 'AjaxController@postBindId');
     Route::post('cateforproperty', 'AjaxController@cateforproperty');
     Route::post('urlarticles', 'AjaxController@urlarticles');
     Route::post('urlgroups', 'AjaxController@urlgroups');
@@ -360,7 +363,7 @@ Route::group(['prefix' => '/','namespace' => 'Fontend'], function () {
     Route::get('checkout','CartController@checkout');
 
     Route::post('emails', 'HomeController@emails');
-
+    Route::get('web3', 'HomeController@web3');
     Route::get('{group}','ArticlesController@list_articles');
     Route::get('{group}/{slug}','ArticlesController@detail');
 

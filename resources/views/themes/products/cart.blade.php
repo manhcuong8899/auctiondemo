@@ -30,23 +30,23 @@
                                         </div><!--.col-4-->
                                         <div class="col-sm-8">
                                             <div class="ch4_cartItemPricing">
-                                                <p class="ch4_cartItemPrice"><span>{{number_format(($carts->price*$carts->qty) - $carts->options->coupons,'8',',','.')}} ETH</span> <br>@if($carts->options->coupons!=0)<span style="text-decoration: line-through; color: #000000">{{number_format($carts->price*$carts->qty,'0',',','.')}}</span>@endif</p>
+                                                <p class="ch4_cartItemPrice"><span>{{number_format(($carts->price*$carts->qty) - $carts->options->coupons,'2',',','.')}} ETH</span> <br>@if($carts->options->coupons!=0)<span style="text-decoration: line-through; color: #000000">{{number_format($carts->price*$carts->qty,'2',',','.')}}</span>@endif</p>
                                             </div>
                                             <div class="ch4_cartItemOptionsContainer">
                                                 <a href="{{url($carts->options->slug)}}" class="ch4_cartItemTitle">{{$carts->name}}</a>
                                                 <div class="ch4_cartItemOptions">
                                                     <div class="ch4_cartItemOption">
                                                         <span class="ch4_cartItemLabel">Đơn giá:</span>
-                                                        <span class="cartnum_price">{{number_format($carts->price,'8',',','.')}} ETH</span>
+                                                        <span class="cartnum_price">{{number_format($carts->price,'2',',','.')}} ETH</span>
                                                     </div>
                                                     <div class="ch4_cartItemOption">
                                                         <span class="ch4_cartItemLabel">Thành tiền:</span>
                                                         <span class="cartnum_qty">{{$carts->qty}}</span> x
-                                                        <span class="cartnum_price">{{number_format($carts->price,'8',',','.')}} ETH</span>
+                                                        <span class="cartnum_price">{{number_format($carts->price,'2',',','.')}} ETH</span>
                                                     </div>
                                                     <div class="ch4_cartItemOption">
                                                         <span class="ch4_cartItemLabel">Giảm theo mã:</span>
-                                                        <span class="cartnum_price">{{number_format($carts->options->coupons,'8',',','.')}} ETH</span>
+                                                        <span class="cartnum_price">{{number_format($carts->options->coupons,'2',',','.')}} ETH</span>
                                                     </div>
                                                 </div>
                                                 <div class="ch4_miniTools">
@@ -55,10 +55,6 @@
                                                         <select class="model_cart_qty" name="newquantity{{$carts->id}}">
                                                             <option value="{{$carts->qty}}" selected>{{$carts->qty}}</option>
                                                             <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="3">4</option>
-                                                            <option value="3">5</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -105,14 +101,14 @@
                         </div>
                         <div class="ch4_summarySubtotal ch4_summaryRow">
                             Giá đặt (Tổng số SP)
-                            <span id="subTotalAmount" class="ch4_right">{{number_format($total,'8',',','.')}} ETH</span>
+                            <span id="subTotalAmount" class="ch4_right">{{number_format($total,'2',',','.')}} ETH</span>
                         </div>
 
                         <div id="ch4_summaryTotal" class="ch4_itemName ch4_summaryRow">
-                            Chiết khấu <span id="totalAmt" class="ch4_right">{{number_format($coupons,'8',',','.')}} ETH</span>
+                            Chiết khấu <span id="totalAmt" class="ch4_right">{{number_format($coupons,'2',',','.')}} ETH</span>
                         </div>
                         <div id="ch4_summaryTotal" class="ch4_itemName ch4_summaryRow">
-                            Tổng giá đặt<span id="totalAmt" class="ch4_right">{{number_format($total-$coupons,'8',',','.')}} ETH</span>
+                            Tổng giá đặt<span id="totalAmt" class="ch4_right">{{number_format($total-$coupons,'2',',','.')}} ETH</span>
                         </div>
 
                         <div id="ch4_summaryButtons" class="ch4_summaryRowEnd ">

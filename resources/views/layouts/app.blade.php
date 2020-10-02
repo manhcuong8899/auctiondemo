@@ -111,9 +111,14 @@
 	</script>
 	<script type="text/javascript" src="{{ asset('plugins/editor/func_ckfinder.js') }}"></script>
 	<!-- end ckediter và ckfinder -->
+	<script src="{{ asset('node_modules/web3/dist/web3.js') }}"></script>
+	<script src="{{ asset('themes/assets/js/connect_metamask.js') }}"></script>
+	<script src="{{ asset('themes/assets/js/dapp.js') }}"></script>
+	<script src="{{ asset('themes/assets/js/eth.js') }}"></script>
+
 </head>
 
-<body class="hold-transition skin-blue-light sidebar-mini">
+<body class="skin-blue-light sidebar-mini sidebar-collapse">
 <div class="wrapper">
 @include('includes.header')
 @include('includes.mainsidebar')

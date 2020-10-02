@@ -145,9 +145,9 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
     {
        if(Auth::user()->hasRole('administrator')==true)
        {
-           return $this->hasProfile() ? url('admin/members/show/' . $this->email) : 'admin';
+           return $this->hasProfile() ? url('admin/products') : 'admin/products';
        }
-        return $this->hasProfile() ? url('/') : '/';
+        return $this->hasProfile() ? url('admin/products') : 'admin/products';
 
     }
 

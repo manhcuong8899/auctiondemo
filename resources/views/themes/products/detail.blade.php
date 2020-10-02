@@ -7,11 +7,11 @@
     <div class="container">
         <div class="product-detail">
             <div class="row">
-                <div class="col-sm-7">
+                <div class="col-sm-6">
                     <div class="product-img clearfix">
                         <div class="easyzoom easyzoom--adjacent easyzoom--with-thumbnails">
                             <a href="{{asset('public/images/products/'.$detailproduct->model.'/'.$detailproduct->images)}}">
-                                <img src="{{asset('public/images/products/'.$detailproduct->model.'/'.$detailproduct->images)}}" alt="" class="imgresponsive"/>
+                                <img src="{{asset('public/images/products/'.$detailproduct->model.'/'.$detailproduct->images)}}" alt="" class="imgresponsive_detail"/>
                             </a>
                         </div>
                     </div>
@@ -27,56 +27,127 @@
                 </div>
                 <?php
                 $checktime = \App\Http\Controllers\Controller::checkendtime($detailproduct->starttime,$detailproduct->endtime);
-                               ?>
-                <div class="col-sm-5">
+                ?>
+                <div class="col-sm-6">
                     <h1 class="product-title">{{$detailproduct->name}}</h1>
                                        @if($detailproduct->cates->parent!=null)
                     <h2 class="product-subtitle">{{$detailproduct->cates->parent->name}}-{{$detailproduct->cates->name}}</h2>
                     @else
                         <h2 class="product-subtitle">{{$detailproduct->cates->name}}</h2>
                     @endif
-                    @if($checktime==1)
-                        <div class="price">Giá sàn: <span class="old">{{number_format($detailproduct->price,8,',','.')}} ETH</span></div>
+                    @if($checktime==1 && $detailproduct->status==1)
+                        <div class="price">Giá hiện tại: <span class="old" id="current" name="current">{{$detailproduct->price}} ETH</span></div>
                     <div class="product-button">
-                        <input class="p-btn btn-qty" required type="number" step="0.01" min="{{$detailproduct->price}}" name="quantity" id="quantity" value="{{$detailproduct->price}}">
-                        <button class="p-btn add-to-cart" id="add_cart" value="{{$detailproduct->id}}">ĐẤU GIÁ</button>
+                        <input class="p-btn btn-qty" required type="number" step="1" min="{{$detailproduct->price}}" name="bindprice" id="bindprice" value="{{$detailproduct->price+1}}">
+                        <button class="p-btn add-to-bind" id="placeBind" value="{{$detailproduct->id}}">ĐẶT GIÁ</button>
                     </div>
                     @endif
                     <div class="product-links">
-                        @if($checktime==1)
-
+                        @if($checktime==1 && $detailproduct->status==1 )
+                            Giá khởi điểm: <span class="old"><b>{{number_format($detailproduct->price +1 ,2,',','.')}} ETH</b></span>
                             <button class="p-btn startus-openbind"><b>ĐANG MỞ ĐẤU GIÁ</b></button>
-                        @endif
-                            @if($checktime==2)
-
-                            <button class="p-btn startus-endbind"><b>KẾT THÚC ĐẤU GIÁ</b></button>
-                            @endif
-                            @if($checktime==0)
+                        @elseif($checktime==2 && $detailproduct->status==1)
+                            <button class="p-btn startus-endtime"><b>HẾT THỜI GIAN PHIÊN</b></button>
+                        @elseif($checktime==2 && $detailproduct->status==2)
+                           <button class="p-btn startus-endbind"><b>KẾT THÚC PHIÊN</b></button>
+                        @else
                             <button class="p-btn startus-notbind"><b>CHƯA MỞ ĐẤU GIÁ</b></button>
-                            @endif
+                        @endif
 
                         <a href="{!! $settings['linkfanpage']!!}" class="facebook" TARGET="_blank"><i class="fa fa-facebook"></i></a>
                         <a href="{!! $settings['instagram']!!}" TARGET="_blank"><i class="fa fa-instagram"></i></a>
                     </div>
-                    <div class="product-shipping"> {!!$detailproduct->short!!}</div>
+                    <div class="pi-pdpmainbody">
+                        <div id="clock" class="timeclock"></div>
+                    </div>
                 </div><!--/.col-->
             </div><!-- /.row-->
             <div class="product-info-more">
                 <div class="row">
-                    <div class="col-sm-4">
-                        <img src="{{asset('public/images/products/'.$detailproduct->model.'/'.$detailproduct->images)}}" alt="" class="imgresponsive"/>
-                    </div>
-                    <div class="col-sm-8">
-                        <h3 class="product-title">{{$detailproduct->name}}</h3>
-                        <div class="pi-pdpmainbody">
-                            {!!$detailproduct->long!!}
-                        </div>
-                    </div><!--/.col-->
-                </div><!--/row-->
+                    <div class="col-sm-12">
+                        <h2 class="mTitle" align="center">Danh sách giao dịch đấu giá mua sản phẩm</h2>
+                        <div class="nike-cq-table"><!-- top header -->
+                                <table class="nsg-text--medium-grey top" cellpadding="5" cellspacing="5">
+                                    <tbody id = "table_tbody">
+                                    <tr class="nike-cq-table-header" style="height:65px;">
+                                        <th  style="width: 10%">Hạng</th>
+                                        <th style="width: 40%">Địa chỉ ví</th>
+                                        <th style="width: 20%">Họ và tên</th>
+                                        <th style="width: 10%">Giá đặt</th>
+                                        <th >Thời gian</th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                        </div><!--/.tab-content-->
+                    </div><!--/.col-12-->
+                </div><!-- /.row-->
             </div><!--/.product-info-more-->
         </div><!-- /.page-view -->
     </div><!-- /.container -->
 @endsection
 @section('page-script')
+    <script>
+        $(document).on('ready', function(){
+            $('#clock').countdown('{{$detailproduct->endtime}}', function(event) {
+                $(this).html(event.strftime('%D ngày %H:%M:%S'));
+            });
 
+            var proid = '{{$detailproduct->bind}}';
+            var contract = '{{$settings['contractaddress']}}';
+            // Gán các thông tin đấu giá
+            getBindCount(contract,proid,function (totalBind) {
+                if(totalBind==0){
+                    $('.price [name="current"]').html('0 giao dịch đặt giá');
+                    $('#table_tbody').append("<tr>" +
+                        "<td class='nsg-bg--white' style='height:40px;' colspan='5'>Chưa có giao dịch đấu giá mua sản phẩm</td>" +
+                        "</tr>");
+                }else{
+                    queryProduct(contract,proid,function (data){
+                        $('.price [name="current"]').html(data[5] + ',00 ETH' + '('+ totalBind + 'giao dịch đặt giá)');
+                        $('[name="bindprice"]').val(parseInt(data[5]) + 1);
+                        $('[name="bindprice"]').attr('min',parseInt(data[5]) + 1);
+                    });
+                    // Hiển thị danh sách người dùng
+                    var stt =1;
+                    for (var i = totalBind-1; i >=0; i--){
+                        getBidProduct(contract,proid,i,function (data) {
+                            var date = new Date(data[4]*1000);
+                                    $('#table_tbody').append("<tr>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>"+ stt + "</td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>" +data[0] + "</td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>" +data[1] + "</td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>" +data[3] + " ETH </td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'> " + date + "</td>"+
+                                    "</tr>");
+                            stt++;
+                        });
+                    }
+                }
+            });
+
+        // Check điều kiện người dùng đã đăng nhập
+            @if(!Auth::guest())
+            var bidder ='{{Auth::user()->profile->wallet}}';
+            var buy_name ='{{Auth::user()->full_name}}';
+            var buy_email ='{{Auth::user()->email}}';
+
+            getUserBind(contract,bidder,function (Products) {
+                var numbers = Products.length;
+                    for(var i=0; i<=numbers-1; i++){
+                        if(Products[i]==proid) {
+                            $('#placeBind').html('TIẾP TỤC ĐẶT');
+                        }
+                    }
+                $('#placeBind').click(function() {
+                    var amount = parseInt($('[name="bindprice"]').val());
+                    placeBid(contract,proid,bidder,buy_name,buy_email,amount);
+                })
+
+
+            });
+
+            @endif
+        });
+
+    </script>
 @endsection

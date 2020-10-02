@@ -13,7 +13,7 @@ class Products extends Model
 
     protected $fillable = ['name','code','price','listprice','images','short','long',
                             'mode','status','group','locale','cate_id','slug','order',
-                            'model','quantity','size','color','weight','user_id','slug_name','brand','slug_brand','shortcate','longcate','description','keywords','starttime','endtime'];
+                            'model','quantity','size','color','weight','user_id','slug_name','brand','slug_brand','shortcate','longcate','description','keywords','starttime','endtime','bind'];
 /*
     public static function colors($slug_name)
     {

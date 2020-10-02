@@ -14,7 +14,7 @@ class EloquentProductsRepository implements ProductsRepositoryInterface
      */
     public function getAll()
     {
-        return Products::orderBy('created_at','desc')
+        return Products::orderBy('endtime','asc')
            /* ->where('locale',getCurrentSessionAppLocale())->groupBy('name')*/
             ->where('locale',getCurrentSessionAppLocale())
             ->paginate(25);

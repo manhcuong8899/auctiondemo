@@ -5,14 +5,15 @@
     <li class="treeview {{setMenuActive('admin/products')}}">
         <a href="#">
             <i class="fa fa-product-hunt"></i>
-            <span>Quản lý sản phẩm</span>
+            <span>Quản lý phiên đấu giá</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li class="{{ setMenuActive('admin/products') }}"><a href="{{url('admin/products')}}"><i class="fa fa-list"></i>Danh sách sản phẩm</a></li>
-            <li class="{{ setMenuActive('admin/create/products') }}"><a href="{{url('admin/create/products')}}"><i class="fa fa-plus"></i>Thêm mới sản phẩm</a></li>
-            <li class="{{ setMenuActive('admin/groupproducts') }}"><a href="{{url('admin/groupproducts')}}"><i class="fa fa-object-group"></i>Quản lý nhóm sản phẩm</a></li>
-            <li class="{{ setMenuActive('admin/products/import') }}"><a href="{{url('admin/products/import')}}"><i class="fa fa-file-excel-o"></i>Nhập liệu- Sửa đổi Excel</a></li>
+            <li class="{{ setMenuActive('admin/products') }}"><a href="{{url('admin/products')}}"><i class="fa fa-list"></i>Tất cả các phiên</a></li>
+            <li class="{{ setMenuActive('admin/create/products') }}"><a href="{{url('admin/create/products')}}"><i class="fa fa-plus"></i>Thêm mới phiên</a></li>
+            <li class="{{ setMenuActive('admin/products/status/pending') }}"><a href="{{url('admin/products/status/pending')}}"><i class="fa fa-warning"></i>Phiên chờ đấu giá</a></li>
+            <li class="{{ setMenuActive('admin/products/status/active') }}"><a href="{{url('admin/products/status/active')}}"><i class="fa fa-opencart"></i>Phiên đang mở</a></li>
+            <li class="{{ setMenuActive('admin/products/status/inactive') }}"><a href="{{url('admin/products/status/inactive')}}"><i class="fa fa-close"></i>Phiên đã kết thúc</a></li>
         </ul>
     </li>
 @endcan
@@ -30,21 +31,6 @@
             <li class="{{ setMenuActive('admin/customer/bronze') }}"><a href="{{url('admin/customer/bronze')}}"><i class="fa fa-user-secret"></i>Thành viên đồng</a></li>
             <li class="{{ setMenuActive('admin/customer/regular') }}"><a href="{{url('admin/customer/regular')}}"><i class="fa fa-user-secret"></i>Thành viên thường</a></li>
 
-        </ul>
-    </li>
-@endcan
-@can('orderonline_management')
-    <li class="treeview {{ setMenuActive('admin/order/online') }}">
-        <a href="#">
-            <i class="fa fa-transgender-alt"></i>
-            <span>Quản lý giao dịch</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li class="{{ setMenuActive('admin/order/online') }}"><a href="{{url('admin/order/online')}}"><i class="fa fa-child"></i>Tất cả đơn hàng</a></li>
-            @foreach(GetStatusOrder() as $value)
-                <li class="{{ setMenuActive('admin/order/online/'.$value->code) }}"><a href="{{url('admin/order/online/'.$value->code)}}"><i class="fa fa-child"></i>{{$value->name}}</a></li>
-            @endforeach
         </ul>
     </li>
 @endcan
@@ -98,10 +84,7 @@
                     </ul>
                 </li>
             @endcan
-        <li class="{{ setMenuActive('admin/settings/general') }}"><a href="{{url('admin/settings/general')}}"><i class="fa fa-child"></i>Cấu hình chung</a></li>
-        <li class="{{ setMenuActive('admin/banks') }}"><a href="{{url('admin/banks')}}"><i class="fa fa-child"></i>Cấu hình địa chỉ Ví</a></li>
-        <li class="{{ setMenuActive('admin/units') }}"><a href="{{url('admin/units')}}"><i class="fa fa-child"></i>Đơn vị sản phẩm</a></li>
+        <li class="{{ setMenuActive('admin/settings/general') }}"><a href="{{url('admin/settings/general')}}"><i class="fa fa-cloud"></i>Cấu hình chung</a></li>
     </ul>
 </li>
 @endcan
-
