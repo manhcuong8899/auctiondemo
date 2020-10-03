@@ -132,7 +132,6 @@ class AjaxController extends Controller
     {
         $data = $request->data;
         $type = $request->type;
-
         $articales = Articles::where('group',$type)
             ->where('status',1)->get();
         if($type=="products")

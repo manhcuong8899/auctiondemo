@@ -28,6 +28,45 @@ var abi=[
         "type": "function"
     },
     {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "p_id",
+                "type": "uint256"
+            },
+            {
+                "name": "seller",
+                "type": "address"
+            },
+            {
+                "name": "p_name",
+                "type": "string"
+            },
+            {
+                "name": "p_start",
+                "type": "uint256"
+            },
+            {
+                "name": "p_deadline",
+                "type": "uint256"
+            },
+            {
+                "name": "p_price",
+                "type": "uint256"
+            }
+        ],
+        "name": "createProduct",
+        "outputs": [
+            {
+                "name": "productid",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
         "constant": true,
         "inputs": [],
         "name": "getProductCount",
@@ -87,6 +126,10 @@ var abi=[
             {
                 "name": "p_id",
                 "type": "uint256"
+            },
+            {
+                "name": "seller",
+                "type": "address"
             },
             {
                 "name": "p_name",
@@ -284,11 +327,50 @@ var abi=[
         "constant": true,
         "inputs": [
             {
-                "name": "productid",
+                "name": "",
                 "type": "uint256"
             }
         ],
-        "name": "getBindCount",
+        "name": "Winner",
+        "outputs": [
+            {
+                "name": "bidder",
+                "type": "address"
+            },
+            {
+                "name": "buyer_name",
+                "type": "string"
+            },
+            {
+                "name": "buyer_email",
+                "type": "string"
+            },
+            {
+                "name": "amount",
+                "type": "uint256"
+            },
+            {
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "name": "status",
+                "type": "uint8"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "refunds",
         "outputs": [
             {
                 "name": "",
@@ -303,35 +385,38 @@ var abi=[
         "constant": false,
         "inputs": [
             {
-                "name": "p_id",
-                "type": "uint256"
-            },
-            {
-                "name": "p_name",
-                "type": "string"
-            },
-            {
-                "name": "p_start",
-                "type": "uint256"
-            },
-            {
-                "name": "p_deadline",
-                "type": "uint256"
-            },
-            {
-                "name": "p_price",
+                "name": "proid",
                 "type": "uint256"
             }
         ],
-        "name": "createProduct",
+        "name": "GetCoinFromWinner",
         "outputs": [
+            {
+                "name": "success",
+                "type": "bool"
+            }
+        ],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
             {
                 "name": "productid",
                 "type": "uint256"
             }
         ],
+        "name": "getBindCount",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
         "payable": false,
-        "stateMutability": "nonpayable",
+        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -453,8 +538,8 @@ var Web3 = require('web3');
 var web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/v3/b7f2ce93c320460eaaef396b9f547f7b'));
 
 //1. Call createProduct
-function createProduct(contractaddress,p_id,p_name,p_start,p_deadline,p_price, getblock){
-    var MyContract = web3.eth.contract(abi).at(contractaddress).createProduct(p_id,p_name,p_start,p_deadline,p_price,function(err, result){
+function createProduct(contractaddress,p_id,seller,p_name,p_start,p_deadline,p_price, getblock){
+    var MyContract = web3.eth.contract(abi).at(contractaddress).createProduct(p_id,seller,p_name,p_start,p_deadline,p_price,function(err, result){
         if (err){
             alert('Hủy tạo phiên đấu giá mua sản phẩm');
         } else {
@@ -538,22 +623,54 @@ function getBidProduct(contractaddress,proid,idx,data){
         });
 };
 
-
-
-//4. Call Send Coin
-function sendCoin(contractaddress,buyer, admin, totalamount) {
-    var MyContract = web3.eth.contract(abi).at(contractaddress).sendCoin(totalamount,{
-        from:buyer,
-        to:admin,
-        value:web3.toWei(Totalamount, "ether"),
-        gas:300000}, function(err, result){
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(result);
-        };
-});
+//6. Hàm lấy trạng thái phiên sản phẩm
+function getStatus(contractaddress,proid,status){
+    var MyContract = web3.eth.contract(abi).at(contractaddress).getStatus.call(proid,
+        function(err, result){
+            if (err){
+                alert('Lỗi lấy dữ liệu trạng thái phiên sản phẩm');
+            } else {
+                status(result);
+            };
+        });
 };
+//6. Kết thúc phiên
+function endAuction(contractaddress,proid,status){
+    var MyContract = web3.eth.contract(abi).at(contractaddress).endAuction(proid,
+        function(err, result){
+            if (err){
+                alert('Lỗi kết thúc phiên đấu giá');
+            } else {
+                status(result);
+            };
+        });
+};
+
+//7. Hàm lấy thông tin người thắng đặt đấu giá mua sản phẩm
+function getWinner(contractaddress,proid,data){
+    var MyContract = web3.eth.contract(abi).at(contractaddress).Winner.call(proid,
+        function(err, result){
+            if (err){
+                alert('Lỗi lấy dữ liệu người đặt thắng cuộc');
+            } else {
+                data(result);
+            };
+        });
+};
+
+//8. Hàm nhận ETH từ Contract
+function GetCoinFromWinner(contractaddress,productid) {
+    var MyContract = web3.eth.contract(abi).at(contractaddress).GetCoinFromWinner.sendTransaction(productid,
+        function(err, result){
+            if (err){
+                alert('Xử lý nhận coi không thành công! Kiểm tra địa chỉ Ví');
+            } else {
+                alert('Thành công');
+            };
+        });
+};
+
+
 
 function GetFormattedDate(date) {
     var todayTime = new Date(date);

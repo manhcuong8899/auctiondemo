@@ -5,15 +5,15 @@
     <li class="treeview <?php echo e(setMenuActive('admin/products')); ?>">
         <a href="#">
             <i class="fa fa-product-hunt"></i>
-            <span>Quản lý phiên đấu giá</span>
+            <span>Quản lý sản phẩm</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li class="<?php echo e(setMenuActive('admin/products')); ?>"><a href="<?php echo e(url('admin/products')); ?>"><i class="fa fa-list"></i>Tất cả các phiên</a></li>
-            <li class="<?php echo e(setMenuActive('admin/create/products')); ?>"><a href="<?php echo e(url('admin/create/products')); ?>"><i class="fa fa-plus"></i>Thêm mới phiên</a></li>
-            <li class="<?php echo e(setMenuActive('admin/products/status/pending')); ?>"><a href="<?php echo e(url('admin/products/status/pending')); ?>"><i class="fa fa-warning"></i>Phiên chờ đấu giá</a></li>
-            <li class="<?php echo e(setMenuActive('admin/products/status/active')); ?>"><a href="<?php echo e(url('admin/products/status/active')); ?>"><i class="fa fa-opencart"></i>Phiên đang mở</a></li>
-            <li class="<?php echo e(setMenuActive('admin/products/status/inactive')); ?>"><a href="<?php echo e(url('admin/products/status/inactive')); ?>"><i class="fa fa-close"></i>Phiên đã kết thúc</a></li>
+            <li class="<?php echo e(setMenuActive('admin/products')); ?>"><a href="<?php echo e(url('admin/products')); ?>"><i class="fa fa-list"></i>Tất cả sản phẩm</a></li>
+            <li class="<?php echo e(setMenuActive('admin/create/products')); ?>"><a href="<?php echo e(url('admin/create/products')); ?>"><i class="fa fa-plus"></i>Thêm mới sản phẩm</a></li>
+            <li class="<?php echo e(setMenuActive('admin/products/status/pending')); ?>"><a href="<?php echo e(url('admin/products/status/pending')); ?>"><i class="fa fa-warning"></i>Sản phẩm chờ mở phiên</a></li>
+            <li class="<?php echo e(setMenuActive('admin/products/status/active')); ?>"><a href="<?php echo e(url('admin/products/status/active')); ?>"><i class="fa fa-opencart"></i>Sản phẩm mở phiên</a></li>
+            <li class="<?php echo e(setMenuActive('admin/products/status/inactive')); ?>"><a href="<?php echo e(url('admin/products/status/inactive')); ?>"><i class="fa fa-close"></i>Sản phẩm phiên kết thúc</a></li>
         </ul>
     </li>
 <?php endif; ?>

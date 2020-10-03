@@ -317,13 +317,13 @@ class Controller extends BaseController {
         $now = Carbon::now('Asia/Ho_Chi_Minh');
         $now = strtotime($now);
                if($starttime > $now && $now > $endtime){
-            return 0; // Chưa mở thầu
+            return 0; // Chưa mở phiên
         }
         if($starttime <= $now &&  $now <= $endtime){
-            return 1; // Đang mở
+            return 1; // Đang mở phiên
         }
         if($starttime < $now &&  $now > $endtime){
-            return 2; // Đã kết thúc
+            return 2; // Đã đóng phiên
         }
     }
 }

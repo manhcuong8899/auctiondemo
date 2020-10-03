@@ -8,6 +8,7 @@ use App\Models\Join;
 use App\Models\Join_mode;
 use App\Models\Join_property;
 use App\Models\Size;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use VNPCMS\Catearticle\CateArticles;
 use VNPCMS\Flasher\Facades\Flash;
@@ -172,6 +173,7 @@ class ProductsController extends Controller
 
     public function detail(Request $request)
     {
+          $nowtime = Carbon::now('Asia/Ho_Chi_Minh');
           $slug = $this->linktypehtml($request->slug);
           $detailproduct = $this->productsRepository->GetDetail($slug);
 
@@ -203,7 +205,8 @@ class ProductsController extends Controller
             'samename',
             'header',
             'pview',
-            'countpview'
+            'countpview',
+            'nowtime'
         ));
     }
 

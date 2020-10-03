@@ -42,6 +42,9 @@
                         <button class="p-btn add-to-bind" id="placeBind" value="{{$detailproduct->id}}">ĐẶT GIÁ</button>
                     </div>
                     @endif
+                    @if($checktime==2 && $detailproduct->status==2)
+                        <div class="price">Giá cao nhất: <span class="old" id="current" name="current">{{$detailproduct->price}} ETH</span></div>
+                    @endif
                     <div class="product-links">
                         @if($checktime==1 && $detailproduct->status==1 )
                             Giá khởi điểm: <span class="old"><b>{{number_format($detailproduct->price +1 ,2,',','.')}} ETH</b></span>
@@ -49,7 +52,7 @@
                         @elseif($checktime==2 && $detailproduct->status==1)
                             <button class="p-btn startus-endtime"><b>HẾT THỜI GIAN PHIÊN</b></button>
                         @elseif($checktime==2 && $detailproduct->status==2)
-                           <button class="p-btn startus-endbind"><b>KẾT THÚC PHIÊN</b></button>
+                           <button class="p-btn startus-endbind"><b>ĐÃ ĐÓNG PHIÊN</b></button>
                         @else
                             <button class="p-btn startus-notbind"><b>CHƯA MỞ ĐẤU GIÁ</b></button>
                         @endif
@@ -88,65 +91,70 @@
 @section('page-script')
     <script>
         $(document).on('ready', function(){
-            $('#clock').countdown('{{$detailproduct->endtime}}', function(event) {
+            $('#clock').countdown('{{$detailproduct->endtime}}', function(event){
                 $(this).html(event.strftime('%D ngày %H:%M:%S'));
             });
-
-            var proid = '{{$detailproduct->bind}}';
             var contract = '{{$settings['contractaddress']}}';
-            // Gán các thông tin đấu giá
-            getBindCount(contract,proid,function (totalBind) {
-                if(totalBind==0){
-                    $('.price [name="current"]').html('0 giao dịch đặt giá');
-                    $('#table_tbody').append("<tr>" +
-                        "<td class='nsg-bg--white' style='height:40px;' colspan='5'>Chưa có giao dịch đấu giá mua sản phẩm</td>" +
-                        "</tr>");
-                }else{
-                    queryProduct(contract,proid,function (data){
-                        $('.price [name="current"]').html(data[5] + ',00 ETH' + '('+ totalBind + 'giao dịch đặt giá)');
-                        $('[name="bindprice"]').val(parseInt(data[5]) + 1);
-                        $('[name="bindprice"]').attr('min',parseInt(data[5]) + 1);
-                    });
-                    // Hiển thị danh sách người dùng
-                    var stt =1;
-                    for (var i = totalBind-1; i >=0; i--){
-                        getBidProduct(contract,proid,i,function (data) {
-                            var date = new Date(data[4]*1000);
-                                    $('#table_tbody').append("<tr>" +
+            var nowtime = '{{strtotime($nowtime)}}';
+            var proid = '{{$detailproduct->bind}}';
+            var proid = parseInt(proid);
+            if(isNaN(proid)==false)
+            {
+                // Gán các thông tin đấu giá
+                getBindCount(contract,proid,function (totalBind){
+                    if(totalBind==0){
+                        $('.price [name="current"]').html('0 giao dịch đặt giá');
+                        $('#table_tbody').append("<tr>" +
+                            "<td class='nsg-bg--white' style='height:40px;' colspan='5'>Chưa có giao dịch đấu giá mua sản phẩm</td>" +
+                            "</tr>");
+                    }else{
+                        queryProduct(contract,proid,function (data){
+                            $('.price [name="current"]').html(data[5] + ',00 ETH' + '('+ totalBind + 'giao dịch đặt giá)');
+                            $('[name="bindprice"]').val(parseInt(data[5]) + 1);
+                            $('[name="bindprice"]').attr('min',parseInt(data[5]) + 1);
+                        });
+                        // Hiển thị danh sách người dùng
+                        var stt =1;
+                        for (var i = totalBind-1; i >=0; i--){
+                            getBidProduct(contract,proid,i,function (data){
+                                var date = new Date(data[4]*1000);
+                                $('#table_tbody').append("<tr>" +
                                     "<td class='nsg-bg--white' style='height:40px;'>"+ stt + "</td>" +
                                     "<td class='nsg-bg--white' style='height:40px;'>" +data[0] + "</td>" +
                                     "<td class='nsg-bg--white' style='height:40px;'>" +data[1] + "</td>" +
                                     "<td class='nsg-bg--white' style='height:40px;'>" +data[3] + " ETH </td>" +
                                     "<td class='nsg-bg--white' style='height:40px;'> " + date + "</td>"+
                                     "</tr>");
-                            stt++;
-                        });
+                                stt++;
+                            });
+                        }
                     }
-                }
-            });
+                });
 
-        // Check điều kiện người dùng đã đăng nhập
-            @if(!Auth::guest())
-            var bidder ='{{Auth::user()->profile->wallet}}';
-            var buy_name ='{{Auth::user()->full_name}}';
-            var buy_email ='{{Auth::user()->email}}';
+                getStatus(contract,proid,function(status){
+                    //////////
+                });
 
-            getUserBind(contract,bidder,function (Products) {
-                var numbers = Products.length;
+                // Check điều kiện người dùng đã đăng nhập và đặt giá
+                        @if(!Auth::guest())
+                var bidder ='{{Auth::user()->profile->wallet}}';
+                var buy_name ='{{Auth::user()->full_name}}';
+                var buy_email ='{{Auth::user()->email}}';
+                getUserBind(contract,bidder,function (Products){
+                    var numbers = Products.length;
                     for(var i=0; i<=numbers-1; i++){
                         if(Products[i]==proid) {
                             $('#placeBind').html('TIẾP TỤC ĐẶT');
                         }
                     }
-                $('#placeBind').click(function() {
-                    var amount = parseInt($('[name="bindprice"]').val());
-                    placeBid(contract,proid,bidder,buy_name,buy_email,amount);
-                })
+                    $('#placeBind').click(function() {
+                        var amount = parseInt($('[name="bindprice"]').val());
+                        placeBid(contract,proid,bidder,buy_name,buy_email,amount);
+                    })
+                });
+                @endif
+            }
 
-
-            });
-
-            @endif
         });
 
     </script>

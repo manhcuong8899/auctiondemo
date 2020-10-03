@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <!-- Content Header (Page header) -->
         <section class="content">
                 <div class="box box-primary">
@@ -8,8 +7,9 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="{{ url('admin/products/create') }}" method="POST" enctype="multipart/form-data">
-                        {!! csrf_field() !!}
+                    <form role="form" action="<?php echo e(url('admin/products/create')); ?>" method="POST" enctype="multipart/form-data">
+                        <?php echo csrf_field(); ?>
+
                         <div class="box-body">
                             <div class="row">
                             <div class="col-md-6">
@@ -67,31 +67,32 @@
                                             </ul>
                                             <div class="tab-content">
                                                 <div class="tab-pane active" id="tab_1">
-                                                    <div class="form-group {{ $errors->has('short') ? ' has-error' : ' has-feedback' }}">
+                                                    <div class="form-group <?php echo e($errors->has('short') ? ' has-error' : ' has-feedback'); ?>">
                                                         <textarea class="form-control" id="short" type="text" name="short" rows="5"/></textarea>
-                                                        @if ($errors->has('short'))
+                                                        <?php if($errors->has('short')): ?>
                                                             <span class="help-block">
-												<strong>{{ $errors->first('short') }}</strong>
+												<strong><?php echo e($errors->first('short')); ?></strong>
 											</span>
-                                                        @endif
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                                 <!-- /.tab-pane -->
                                                 <div class="tab-pane" id="tab_2">
-                                                    <div class="form-group {{ $errors->has('long') ? ' has-error' : ' has-feedback' }}">
+                                                    <div class="form-group <?php echo e($errors->has('long') ? ' has-error' : ' has-feedback'); ?>">
                                                         <textarea class="form-control" id="long" type="text" name="long" rows="5"/></textarea>
-                                                        @if ($errors->has('long'))
+                                                        <?php if($errors->has('long')): ?>
                                                             <span class="help-block">
-												<strong>{{ $errors->first('long') }}</strong>
+												<strong><?php echo e($errors->first('long')); ?></strong>
 											</span>
-                                                        @endif
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                                 <!-- /.tab-pane -->
                                                 <div class="tab-pane" id="tab_3">
 
                                                     <div class="form-group">
-                                                        {!! Form::file('input-image[]', array('multiple'=>true,'class'=>'file-loading','accept'=>'image/*','id'=>'input-image') )!!}
+                                                        <?php echo Form::file('input-image[]', array('multiple'=>true,'class'=>'file-loading','accept'=>'image/*','id'=>'input-image') ); ?>
+
                                                     </div>
                                                 </div>
                                                 <!-- /.tab-pane -->
@@ -115,16 +116,16 @@
             <!-- /.box -->
 
     </section><!-- /.content -->
-@stop
-@section('footerscripts')
-    <script src="{{ asset('plugins/fileinput/js/fileinput.min.js') }}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('footerscripts'); ?>
+    <script src="<?php echo e(asset('plugins/fileinput/js/fileinput.min.js')); ?>"></script>
     <script>
         ckeditor('long');
         ckeditor('short');
     </script>
     <script>
         $("#images").fileinput({
-            uploadUrl: "{{url('images/articles/')}}",
+            uploadUrl: "<?php echo e(url('images/articles/')); ?>",
             uploadAsync: true,
             maxFileCount: 5,
             validateInitialCount: true,
@@ -137,7 +138,7 @@
 
     <script>
         $("#input-image").fileinput({
-            uploadUrl: "{{url('images/articles/')}}",
+            uploadUrl: "<?php echo e(url('images/articles/')); ?>",
             uploadAsync: true,
             maxFileCount: 5,
             validateInitialCount: true,
@@ -147,4 +148,5 @@
             allowedFileExtensions: ["jpg", "png", "gif","png","jpeg"]
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

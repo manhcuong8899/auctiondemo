@@ -1,14 +1,14 @@
 <?php $__env->startSection('content'); ?>
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Quản lý phiên đấu giá</h1>
+        <h1>Quản lý sản phẩm</h1>
     </section>
 
     <section class="content">
         <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">Danh sách phiên đấu giá</h3>
+                <h3 class="box-title">Danh sách sản phẩm</h3>
             </div>
             <div class="box-body">
                 <?php if (app('Illuminate\Contracts\Auth\Access\Gate')->check('product_management')): ?>
@@ -56,13 +56,13 @@
                                 $checktime = \App\Http\Controllers\Controller::checkendtime($product->starttime,$product->endtime);
                                 ?>
                                     <?php if($checktime==1 && $product->status==1 ): ?>
-                                        <a id="<?php echo e($product->id); ?>"  onclick="PushProduct(this.id);"> <i class="fa fa-check text-blue"></i></a> Đang mở
+                                        <a id="<?php echo e($product->id); ?>"  onclick="PushProduct(this.id);"> <i class="fa fa-check text-blue"></i></a> Đang mở phiên
                                     <?php elseif($checktime==2 && $product->status==1): ?>
-                                        <a id="<?php echo e($product->id); ?>"  onclick="PushProduct(this.id);"> <i class="fa fa-times-circle text-purple"></i></a> Hết time
+                                        <a id="<?php echo e($product->id); ?>"  onclick="PushProduct(this.id);"> <i class="fa fa-times-circle text-purple"></i></a> Hết thời gian
                                         <?php elseif($checktime==2 && $product->status==2): ?>
-                                        <a id="<?php echo e($product->id); ?>"  onclick="PushProduct(this.id);"> <i class="fa fa-check text-blue"></i></a> Kết thúc
+                                        <a id="<?php echo e($product->id); ?>"  onclick="PushProduct(this.id);"> <i class="fa fa-check text-blue"></i></a> Đã đóng phiên
                                         <?php else: ?>
-                                        <a id="<?php echo e($product->id); ?>"  onclick="PushProduct(this.id);"> <i class="fa fa fa-times text-red"></i></a> chưa mở
+                                        <a id="<?php echo e($product->id); ?>"  onclick="PushProduct(this.id);"> <i class="fa fa fa-times text-red"></i></a> Chưa mở phiên
                                         <?php endif; ?>
                             </td>
                             <td>
@@ -70,11 +70,11 @@
                                     <?php if($checktime==1 && $product->status==1 ): ?>
                                         <a id="<?php echo e($product->id); ?>" class="btn btn-xs btn-default btn-flat"  onclick="PushProduct(this.id);"> <i class="fa fa fa-remove text-red"></i> Hủy đấu giá</a>
                                     <?php elseif($checktime==2 && $product->status==1): ?>
-                                        <a id="<?php echo e($product->id); ?>" class="btn btn-xs btn-default btn-flat"  onclick="PushProduct(this.id);"> <i class="fa fa fa-calendar-times-o text-blue"></i> Kết thúc phiên</a>
+                                        <a id="<?php echo e($product->bind); ?>" class="btn btn-xs btn-default btn-flat"  onclick="PushEndAuction(this.id);"> <i class="fa fa fa-calendar-times-o text-blue"></i> Đóng phiên</a>
                                     <?php elseif($checktime==2 && $product->status==2): ?>
-
+                                        <a id="<?php echo e($product->bind); ?>" class="btn btn-xs btn-default btn-flat"  onclick="Getcoin(this.id);"> <i class="fa fa fa-calendar-times-o text-blue"></i> Nhận Coin</a>
                                     <?php else: ?>
-                                        <a id="<?php echo e($product->id); ?>" class="btn btn-xs btn-default btn-flat"  onclick="PushProduct(this.id);"> <i class="fa fa fa-plus text-blue"></i> Kích hoạt</a>
+                                        <a id="<?php echo e($product->id); ?>" class="btn btn-xs btn-default btn-flat"  onclick="PushProduct(this.id);"> <i class="fa fa fa-plus text-blue"></i> Mở Phiên</a>
                                         <a data-productname="<?php echo e($product->name); ?>" data-productid="<?php echo e($product->id); ?>" data-updaterurl="<?php echo e(url('admin/products/aupdate/'.$product->id)); ?>" title="Cập nhật sản phẩm" class="btn btn-xs btn-default btn-flat" data-toggle="modal" data-target="#aUpdateDialog">
                                             <i class="fa fa-edit text-blue"></i>Cập nhật
                                         </a>
@@ -196,16 +196,29 @@
     </section><!-- /.content -->
 <?php $__env->stopSection(); ?>
     <script>
+
+        function PushEndAuction(id){
+            var contract = '<?php echo e(CRMSettings('contractaddress')); ?>';
+            endAuction(contract,id,function(kq) {
+            });
+        }
+
+        function Getcoin(id){
+            var contract = '<?php echo e(CRMSettings('contractaddress')); ?>';
+               GetCoinFromWinner(contract,id);
+        }
+
         function PushProduct(id){
             var contractaddress ='<?php echo e(CRMSettings('contractaddress')); ?>';
             var urlpro = '<?php echo e(url('admin/updateprobind')); ?>';
+            var seller = '<?php echo e(CRMSettings('wallet')); ?>';
             $.ajax({
                 url: '<?php echo e(url('admin/bindproduct')); ?>',
                 dataType: "json",
                 type: "post",
                 data: {_method: 'post', _token: '<?php echo e(csrf_token()); ?>', proId: id}
             }).done(function(data){
-               createProduct(contractaddress,data.id,data.name,data.starttime,data.endtime,data.price,function (getblock){
+               createProduct(contractaddress,data.id,seller,data.name,data.starttime,data.endtime,data.price,function (getblock){
                   if(getblock!=null){
                       getProductCount(contractaddress,function(Total){
                               $.ajax({
