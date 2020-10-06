@@ -12,6 +12,41 @@ var abi=[
         "constant": true,
         "inputs": [
             {
+                "name": "",
+                "type": "address"
+            },
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "historys",
+        "outputs": [
+            {
+                "name": "p_id",
+                "type": "uint256"
+            },
+            {
+                "name": "bid_id",
+                "type": "uint256"
+            },
+            {
+                "name": "amount",
+                "type": "uint256"
+            },
+            {
+                "name": "bidtime",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
                 "name": "bidder",
                 "type": "address"
             }
@@ -288,6 +323,25 @@ var abi=[
             {
                 "name": "status",
                 "type": "uint8"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "bidder",
+                "type": "address"
+            }
+        ],
+        "name": "getHistoryCount",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
             }
         ],
         "payable": false,
@@ -615,7 +669,7 @@ function getUserBind(contractaddress,bidder,total){
         });
 };
 
-//5. Hàm lấy giá người dùng đã đặt cho sản phẩm
+//5. Hàm lấy thông tin người dùng đã đặt cho sản phẩm
 function getBidProduct(contractaddress,proid,idx,data){
     var MyContract = web3.eth.contract(abi).at(contractaddress).getBidProduct.call(proid,idx,
         function(err, result){
@@ -693,6 +747,30 @@ function ruttien(contractaddress) {
                 alert('Xử lý nhận coi không thành công! Kiểm tra địa chỉ Ví');
             } else {
                 alert('Gửi lệnh thành công');
+            };
+        });
+};
+
+//11. Get dữ liệu lịch sử đặt giao dịch của người dùng theo địa chỉ ví
+function gethistorys(contractaddress,binder,n,data){
+    var MyContract = web3.eth.contract(abi).at(contractaddress).historys.call(binder,n,
+        function(err, result){
+            if (err){
+                alert('Lỗi lấy dữ liệu lịch sử giao dịch');
+            } else {
+                data(result);
+            };
+        });
+};
+
+//12. Get tổng số giao lịch người dùng đã đặt
+function getHistoryCount(contractaddress,binder,totalhis){
+    var MyContract = web3.eth.contract(abi).at(contractaddress).getHistoryCount.call(binder,
+        function(err, result){
+            if (err){
+                alert('Lỗi truy cấp tổng số đặt đấu giá sản phẩm!');
+            } else {
+                totalhis(result);
             };
         });
 };

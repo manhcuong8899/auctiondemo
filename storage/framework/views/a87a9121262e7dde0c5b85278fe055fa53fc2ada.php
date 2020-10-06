@@ -24,7 +24,7 @@
         <ul class="treeview-menu">
             <li class="<?php echo e(setMenuActive('admin/auctions')); ?>"><a href="<?php echo e(url('admin/auctions')); ?>"><i class="fa fa-list"></i>Danh sách phiên</a></li>
             <li class="<?php echo e(setMenuActive('admin/auctions/status/active')); ?>"><a href="<?php echo e(url('admin/auctions/status/active')); ?>"><i class="fa fa-warning"></i>Phiên đang mở</a></li>
-            <li class="<?php echo e(setMenuActive('admin/auctions/status/finish')); ?>"><a href="<?php echo e(url('admin/auctions/status/finish')); ?>"><i class="fa fa-close"></i>Phiên bán thành công</a></li>
+            <li class="<?php echo e(setMenuActive('admin/auctions/status/finish')); ?>"><a href="<?php echo e(url('admin/auctions/status/finish')); ?>"><i class="fa fa-close"></i>Phiên nhận coin</a></li>
             <li class="<?php echo e(setMenuActive('admin/auctions/status/success')); ?>"><a href="<?php echo e(url('admin/auctions/status/success')); ?>"><i class="fa fa-close"></i>Phiên hoàn thành</a></li>
             <li class="<?php echo e(setMenuActive('admin/auctions/status/inactive')); ?>"><a href="<?php echo e(url('admin/auctions/status/inactive')); ?>"><i class="fa fa-opencart"></i>Phiên không người đặt</a></li>
         </ul>

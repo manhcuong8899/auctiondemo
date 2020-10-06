@@ -88,81 +88,60 @@
 @endsection
 @section('page-script')
     <script type="text/javascript">
-        $(document).on('ready', function(){
-            $('.btn-details').click(function(){
-                if($(this).hasClass('opened')){
-
-                    $(this).removeClass('opened');
-                }else{
-                    $(this).addClass('opened');
-                }
-                var summaryInfo = $(this).closest('.item').find('.summaryInfo').slideToggle();
-            });
-        });
       @if(!Auth::guest())
         var contract = '{{$settings['contractaddress']}}';
-        var bidder ='{{Auth::user()->profile->wallet}}';
-        var wallet = bidder.toLowerCase();
-        getUserBind(contract,bidder,function (Products){
-            var numbers = Products.length;
-            var allstt =1;
-            var activestt =1;
-            var winnerstt=1;
-            var refundstt=1
-            for(var i=0; i<=numbers-1;){
-                var proid = Products[i];
-                queryProduct(contract,proid,function (data){
-                    getBindCount(contract,proid,function (Total){
-                        for (var j = Total-1; j >=0; j--){
-                            getBidProduct(contract,proid,j,function(bidpro){
-                                var datebid = new Date(bidpro[4]*1000);
-                                var binder = bidpro[0];
-                                var n = binder.localeCompare(wallet); // so sánh chuỗi
-                                if(n==0){
-                                    $('#all_tbody').append("<tr>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'>"+ allstt + "</td>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'>" +data[0] + "</td>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'>" +bidpro[3] + ' ETH'+"</td>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'> " + datebid + "</td>"+
-                                        "</tr>");
-                                    allstt++;
-                                }
-                                if(data[6]==1 && n==0 && bid[5]==0){
-                                    $('#active_tbody').append("<tr>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'>"+ activestt + "</td>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'>" +data[1] + "</td>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'>" +amount + ' ETH'+"</td>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'> " + datebid + "</td>"+
-                                        "</tr>");
-                                    activestt++;
-                                }
-                                if(data[6]==3 && n==0 && bid[5]==1){
-                                    $('#winner_tbody').append("<tr>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'>"+ winnerstt + "</td>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'>" +data[1] + "</td>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'>" +amount + ' ETH'+"</td>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'> " + datebid + "</td>"+
-                                        "</tr>");
-                                    winnerstt++;
-                                }
-                                if(n==0 && bid[5]==2){
-                                    $('#return_tbody').append("<tr>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'>"+ refundstt + "</td>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'>" +data[1] + "</td>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'>" +amount + ' ETH'+"</td>" +
-                                        "<td class='nsg-bg--white' style='height:40px;'> " + datebid + "</td>"+
-                                        "</tr>");
-                                    refundstt++;
-                                }
-
-                            });
-                        }
-
+        var wallet ='{{Auth::user()->profile->wallet}}';
+        var all =1;
+        var pending =1;
+        var win =1;
+        var refund=1;
+        getHistoryCount(contract,wallet,function(total) {
+            for(var n=total-1; n>=0;n--){
+                gethistorys(contract,wallet,n,function (data) {
+                    var datebid = new Date(data[3]*1000);
+                    queryProduct(contract,data[0],function (data_product){
+                        var p_name =data_product[1];
+                        getBidProduct(contract,data[0],data[1],function (data_bind){
+                            var bid_status = data_bind[5];
+                            $('#all_tbody').append("<tr>" +
+                                "<td class='nsg-bg--white' style='height:40px;'>"+ all + "</td>" +
+                                "<td class='nsg-bg--white' style='height:40px;'>" +p_name + "</td>" +
+                                "<td class='nsg-bg--white' style='height:40px;'>" +data[2] + ' ETH'+"</td>" +
+                                "<td class='nsg-bg--white' style='height:40px;'> " + datebid + "</td>"+
+                                "</tr>");
+                            all++;
+                            if(bid_status==0){
+                                $('#active_tbody').append("<tr>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>"+ pending + "</td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>" +p_name + "</td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>" +data[2] + ' ETH'+"</td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'> " + datebid + "</td>"+
+                                    "</tr>");
+                                pending++;
+                            }else if(bid_status==1){
+                                $('#winner_tbody').append("<tr>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>"+ win + "</td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>" +p_name + "</td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>" +data[2] + ' ETH'+"</td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'> " + datebid + "</td>"+
+                                    "</tr>");
+                                win++;
+                            }else{
+                                $('#return_tbody').append("<tr>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>"+ refund + "</td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>" +p_name + "</td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>" +data[2] + ' ETH'+"</td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'> " + datebid + "</td>"+
+                                    "</tr>");
+                                refund++;
+                            }
+                        })
                     })
-                });
-                i++
+                })
+
             }
-        });
+        })
+
         @endif
 
 
