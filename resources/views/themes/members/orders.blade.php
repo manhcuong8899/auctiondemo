@@ -109,25 +109,50 @@
             var activestt =1;
             var winnerstt=1;
             var refundstt=1
-            for(var i=0; i<=numbers-1; i++){
+            for(var i=0; i<=numbers-1;){
                 var proid = Products[i];
                 queryProduct(contract,proid,function (data){
-                    alert(data)
                     getBindCount(contract,proid,function (Total){
                         for (var j = Total-1; j >=0; j--){
-                            getBidProduct(contract,proid,j,function (bid){
-                                var datebid = new Date(bid[4]*1000);
-                                var binder = bid[0];
-                                var amount = bid[3];
+                            getBidProduct(contract,proid,j,function(bidpro){
+                                var datebid = new Date(bidpro[4]*1000);
+                                var binder = bidpro[0];
                                 var n = binder.localeCompare(wallet); // so sánh chuỗi
                                 if(n==0){
                                     $('#all_tbody').append("<tr>" +
                                         "<td class='nsg-bg--white' style='height:40px;'>"+ allstt + "</td>" +
+                                        "<td class='nsg-bg--white' style='height:40px;'>" +data[0] + "</td>" +
+                                        "<td class='nsg-bg--white' style='height:40px;'>" +bidpro[3] + ' ETH'+"</td>" +
+                                        "<td class='nsg-bg--white' style='height:40px;'> " + datebid + "</td>"+
+                                        "</tr>");
+                                    allstt++;
+                                }
+                                if(data[6]==1 && n==0 && bid[5]==0){
+                                    $('#active_tbody').append("<tr>" +
+                                        "<td class='nsg-bg--white' style='height:40px;'>"+ activestt + "</td>" +
                                         "<td class='nsg-bg--white' style='height:40px;'>" +data[1] + "</td>" +
                                         "<td class='nsg-bg--white' style='height:40px;'>" +amount + ' ETH'+"</td>" +
                                         "<td class='nsg-bg--white' style='height:40px;'> " + datebid + "</td>"+
                                         "</tr>");
-                                    allstt++;
+                                    activestt++;
+                                }
+                                if(data[6]==3 && n==0 && bid[5]==1){
+                                    $('#winner_tbody').append("<tr>" +
+                                        "<td class='nsg-bg--white' style='height:40px;'>"+ winnerstt + "</td>" +
+                                        "<td class='nsg-bg--white' style='height:40px;'>" +data[1] + "</td>" +
+                                        "<td class='nsg-bg--white' style='height:40px;'>" +amount + ' ETH'+"</td>" +
+                                        "<td class='nsg-bg--white' style='height:40px;'> " + datebid + "</td>"+
+                                        "</tr>");
+                                    winnerstt++;
+                                }
+                                if(n==0 && bid[5]==2){
+                                    $('#return_tbody').append("<tr>" +
+                                        "<td class='nsg-bg--white' style='height:40px;'>"+ refundstt + "</td>" +
+                                        "<td class='nsg-bg--white' style='height:40px;'>" +data[1] + "</td>" +
+                                        "<td class='nsg-bg--white' style='height:40px;'>" +amount + ' ETH'+"</td>" +
+                                        "<td class='nsg-bg--white' style='height:40px;'> " + datebid + "</td>"+
+                                        "</tr>");
+                                    refundstt++;
                                 }
 
                             });
@@ -135,6 +160,7 @@
 
                     })
                 });
+                i++
             }
         });
         @endif
