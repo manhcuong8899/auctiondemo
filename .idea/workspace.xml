@@ -2,13 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8b4bf51-0877-411e-a8ae-129a36d1a1d6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/themes/members/orders.blade.php" afterPath="$PROJECT_DIR$/resources/views/themes/members/orders.blade.php" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/5362a90ea65db0925ee6d8f972701f3636e1d736" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/68352b883c5b1650866c7da8b75f03431e66aee8" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/c952d00319abaafdbc6852ee125bd6edcf269759" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/5060f0a64533d229ca7a3a89e1c70e6960ef6417.php" afterPath="$PROJECT_DIR$/storage/framework/views/5060f0a64533d229ca7a3a89e1c70e6960ef6417.php" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/a87a9121262e7dde0c5b85278fe055fa53fc2ada.php" afterPath="$PROJECT_DIR$/storage/framework/views/a87a9121262e7dde0c5b85278fe055fa53fc2ada.php" />
-      <change beforePath="$PROJECT_DIR$/themes/assets/js/dapp.js" afterPath="$PROJECT_DIR$/themes/assets/js/dapp.js" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/00a222d27ed8e99a509492358a08c7332a1feba8.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/01f041e18af1831adef35977b7bce2851d12fdaf.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/02f90243668af3684ca56d3f4846ea68d9437a01.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/046164b609a3b0e1dd2bf808f9f17fe158cc3485.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/04b68376bb88956a161b7f2d907885f63b0f6f8b.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/0500b9feca38f2daa7bc52116cdd07a0bcb05e55.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/21d4adcd22c3ac6cad917dc3f3787c8a7ba6de24.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/26c44f4ace774ac2ee9ffc42765147d946852a01.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/39bdf47b8637e7f0ca2b0cc871142508f5212c48.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/3a1b8cbceb04abc4e325d19ee36040d9dba4aa37.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/41e3a38a832a6499669a53ed501d2969253ad1cb.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/4a74ebd65e76836a00cac0c7ac93a420d3ac1b5f.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/4bdc3c3fe263c01adedc1bc677cd4a53f4715052.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/5060f0a64533d229ca7a3a89e1c70e6960ef6417.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/64a795740a324d25022753806177806c259fc9e2.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/65e3f7d40f69fef46d2fe9d33de9a3c040916056.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/7815f564934b43d6c429e544b06cbd16dc2825d4.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/846e7f5b825ffacabb4bc83c6b72c0045a01bcfb.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/85b18ab3202bf6eb4751f3438a0f9ffba2867204.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/89548624ea2346e4f5aa3f3a2098888ee6bccce4.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/8acfb25486c365987581acd8fc47a73cf53bd9fe.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/94ee463fce61001184899c55de0a7f5a08f8b887.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/994cd004c2fa4e6d21f4755b2c1b226c89904233.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/9fb0de7897a06a811354bcb0ea75fd6ae098bd2d.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/a87a9121262e7dde0c5b85278fe055fa53fc2ada.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/b3930d5c8beb2e92738489a3033144b6af24f187.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/b63bea29098e933f5ed704a9ec6b0ca222595e89.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/b9bde9ab3b329d028573b83171ea80d13f3bffbb.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/ba2a5f275eeacab9a2d9960c60b76f32d5d5461a.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/befdd536e8c55d61e38d092b18c9a691da34e8cf.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/cd99f41929966a6c18648fd3d956f4e4205c181c.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/d2c3f3697b955cda54f06ae73f9063be89e595ef.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/dd1b12e65e2b6db962208e997f7033ed8fa78570.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/de6e80ee3b54eccd2883c0370e325f5ea1d39d81.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/e3d18097cf56bae501175cd6a19d38211c4f195b.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/e97173b3eb13bf34ccee4cc8bc0f5be10f3b0a3f.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/f46fd553abf6f985dfce21973d8784dedc77615c.php" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,8 +65,8 @@
       <file leaf-file-name="orders.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/themes/members/orders.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="128" column="34" lean-forward="true" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
+            <state relative-caret-position="431">
+              <caret line="128" column="34" lean-forward="false" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
               <folding>
                 <marker date="1602027436315" expanded="true" signature="9:25" ph="..." />
                 <marker date="1602027436315" expanded="true" signature="37:49" ph="..." />
@@ -300,7 +330,7 @@
       <path value="$PROJECT_DIR$/vendor/simplito/bigint-wrapper-php" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-6" />
     <option name="y" value="1" />
     <option name="width" value="1374" />
@@ -604,12 +634,12 @@
       <workItem from="1601863203278" duration="12425000" />
       <workItem from="1601906785775" duration="4556000" />
       <workItem from="1601950868114" duration="11854000" />
-      <workItem from="1601990427167" duration="5477000" />
+      <workItem from="1601990427167" duration="5567000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="364214000" />
+    <option name="totallyTimeSpent" value="364304000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -621,8 +651,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21002132" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32792208" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -632,7 +661,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32792208" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24458875" sideWeight="0.49394855" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24458875" sideWeight="0.49394855" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1006,8 +1035,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/themes/members/orders.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="128" column="34" lean-forward="true" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
+        <state relative-caret-position="431">
+          <caret line="128" column="34" lean-forward="false" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
           <folding>
             <marker date="1602027436315" expanded="true" signature="9:25" ph="..." />
             <marker date="1602027436315" expanded="true" signature="37:49" ph="..." />
