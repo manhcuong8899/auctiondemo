@@ -82,20 +82,6 @@ var abi=[
     },
     {
         "constant": true,
-        "inputs": [],
-        "name": "getRefundValue",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
         "inputs": [
             {
                 "name": "proid",
@@ -197,6 +183,10 @@ var abi=[
             {
                 "name": "timestamp",
                 "type": "uint256"
+            },
+            {
+                "name": "status",
+                "type": "uint8"
             }
         ],
         "payable": false,
@@ -390,12 +380,7 @@ var abi=[
             }
         ],
         "name": "GetCoinFromWinner",
-        "outputs": [
-            {
-                "name": "success",
-                "type": "bool"
-            }
-        ],
+        "outputs": [],
         "payable": true,
         "stateMutability": "payable",
         "type": "function"
@@ -409,6 +394,25 @@ var abi=[
             }
         ],
         "name": "getBindCount",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "binder",
+                "type": "address"
+            }
+        ],
+        "name": "getRefundValue",
         "outputs": [
             {
                 "name": "",
@@ -547,7 +551,7 @@ function createProduct(contractaddress,p_id,seller,p_name,p_start,p_deadline,p_p
                 getTransactionStatus(result,function (block) {
                     getblock(block);
                 });
-            }, 60000);
+            }, 50000);
             clearTimeout();
         };
     });
@@ -645,7 +649,6 @@ function endAuction(contractaddress,proid,status){
             };
         });
 };
-
 //7. Hàm lấy thông tin người thắng đặt đấu giá mua sản phẩm
 function getWinner(contractaddress,proid,data){
     var MyContract = web3.eth.contract(abi).at(contractaddress).Winner.call(proid,
@@ -665,7 +668,31 @@ function GetCoinFromWinner(contractaddress,productid) {
             if (err){
                 alert('Xử lý nhận coi không thành công! Kiểm tra địa chỉ Ví');
             } else {
-                alert('Thành công');
+                console.log(result);
+            };
+        });
+};
+
+//9. Hàm get số lượng ETH cần trả lại người dùng
+function getRefundValue(contractaddress,binder,value){
+    var MyContract = web3.eth.contract(abi).at(contractaddress).refunds.call(binder,
+        function(err, result){
+            if (err){
+                alert('Lỗi lấy dữ liệu cần trả lại');
+            } else {
+                value(result);
+            };
+        });
+};
+
+//10. Hàm Người dùng rút tiền từ giao dịch hoàn thành
+function ruttien(contractaddress) {
+    var MyContract = web3.eth.contract(abi).at(contractaddress).withdrawRefund.sendTransaction(
+        function(err, result){
+            if (err){
+                alert('Xử lý nhận coi không thành công! Kiểm tra địa chỉ Ví');
+            } else {
+                alert('Gửi lệnh thành công');
             };
         });
 };

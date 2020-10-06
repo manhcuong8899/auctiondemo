@@ -56,5 +56,4 @@
 
     </div><!-- /.footer -->
     <div class="copyright">Copyright 2020 NHÓM BÀI TẬP LỚN MÔN BLOCKCHAIN & TIỀN MẬT MÃ</div>
-
 </div><!-- /.container -->

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Oswald&amp;subset=vietnamese" rel="stylesheet">
     <?php echo $__env->make('themes.includes.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </head>
 
@@ -18,15 +19,19 @@
             </div>
         </div><!-- /.header -->
         <?php echo $__env->make('themes.includes.flash', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-        <div class="section-slider">
-            <?php echo $__env->make('themes.includes.slide', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-    </div>
+        <?php echo $__env->make('themes.includes.trending', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     <!-- ==========  HEADER : END  ========== -->
 
     <!-- ==========  MAIN =================== -->
     <div class="pmain">
-
-        <?php echo $__env->yieldContent('main-content'); ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                <?php echo $__env->make('themes.includes.left_member', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                </div>
+                <?php echo $__env->yieldContent('main-content'); ?>
+            </div><!-- /.row -->
+        </div><!-- /.container -->
     </div>
     <!-- ==========  MAIN : END ============= -->
 
@@ -37,42 +42,9 @@
         <?php echo $__env->make('themes.includes.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     </div>
     <!-- ==========  FOOTER : END =========== -->
-
         <?php echo $__env->make('themes.includes.script', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     <p id="back-top" style="display: block;"> <a href="#top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a> </p>
-        <script type="text/javascript">
-            $(document).on('ready', function() {
-                $('.list-01 .owl-carousel').owlCarousel({
-                    loop:true,
-                    margin:10,
-                    navSpeed:700,
-                    nav:true,
-                    dots:false,
-                    responsive:{
-                        0:{items:2},
-                        600:{items:3},
-                        1000:{items:4},
-                        1400:{items:5}
-                    }
-                });
-                $('.list-02 .owl-carousel').owlCarousel({
-                    loop:true,
-                    margin:10,
-                    navSpeed:700,
-                    nav:true,
-                    dots:false,
-                    responsive:{
-                        0:{items:2},
-                        600:{items:3},
-                        1000:{items:4},
-                        1400:{items:5}
-                    }
-                });
-
-            });
-        </script>
-
 </div>
     <?php echo $__env->yieldContent('page-script'); ?>
 <!-- ===============  PAGE : END =============== -->

@@ -130,9 +130,8 @@
                 });
 
                 getStatus(contract,proid,function(status){
-                    //////////
-                });
 
+                });
                 // Check điều kiện người dùng đã đăng nhập và đặt giá
                         <?php if(!Auth::guest()): ?>
                 var bidder ='<?php echo e(Auth::user()->profile->wallet); ?>';

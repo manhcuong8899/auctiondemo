@@ -20,7 +20,7 @@
                 <br style="clear:both;">
                 <br style="clear:both;">
                 <?php if (app('Illuminate\Contracts\Auth\Access\Gate')->check('product_management')): ?>
-                <table  class="table table-responsive table-bordered table-hover table-striped">
+                <table id="listproduct" class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th><?php echo e(trans('VNPCMS.forms.tables.columns.id')); ?></th>
@@ -68,11 +68,10 @@
                             <td>
                                 <?php if (app('Illuminate\Contracts\Auth\Access\Gate')->check('product_management')): ?>
                                     <?php if($checktime==1 && $product->status==1 ): ?>
-                                        <a id="<?php echo e($product->id); ?>" class="btn btn-xs btn-default btn-flat"  onclick="PushProduct(this.id);"> <i class="fa fa fa-remove text-red"></i> Hủy đấu giá</a>
+
                                     <?php elseif($checktime==2 && $product->status==1): ?>
-                                        <a id="<?php echo e($product->bind); ?>" class="btn btn-xs btn-default btn-flat"  onclick="PushEndAuction(this.id);"> <i class="fa fa fa-calendar-times-o text-blue"></i> Đóng phiên</a>
-                                    <?php elseif($checktime==2 && $product->status==2): ?>
-                                        <a id="<?php echo e($product->bind); ?>" class="btn btn-xs btn-default btn-flat"  onclick="Getcoin(this.id);"> <i class="fa fa fa-calendar-times-o text-blue"></i> Nhận Coin</a>
+                                    <a id="<?php echo e($product->id); ?>" class="btn btn-xs btn-default btn-flat"  onclick="ressetproduct(this.id);"> <i class="fa fa fa-product-hunt text-red"></i> Thu sản phẩm</a>
+
                                     <?php else: ?>
                                         <a id="<?php echo e($product->id); ?>" class="btn btn-xs btn-default btn-flat"  onclick="PushProduct(this.id);"> <i class="fa fa fa-plus text-blue"></i> Mở Phiên</a>
                                         <a data-productname="<?php echo e($product->name); ?>" data-productid="<?php echo e($product->id); ?>" data-updaterurl="<?php echo e(url('admin/products/aupdate/'.$product->id)); ?>" title="Cập nhật sản phẩm" class="btn btn-xs btn-default btn-flat" data-toggle="modal" data-target="#aUpdateDialog">
@@ -196,16 +195,18 @@
     </section><!-- /.content -->
 <?php $__env->stopSection(); ?>
     <script>
-
-        function PushEndAuction(id){
-            var contract = '<?php echo e(CRMSettings('contractaddress')); ?>';
-            endAuction(contract,id,function(kq) {
+        function ressetproduct(proid) {
+            $.ajax({
+                url: '<?php echo e(url('admin/resetproduct')); ?>',
+                dataType: "json",
+                type: "post",
+                data: {_method: 'post', _token: '<?php echo e(csrf_token()); ?>', proId: proid}
+            }).done(function(data){
+                alert('Thu hồi sản phẩm thành công');
+                location.reload();
+            }).fail(function(data){
+                alert('Lỗi Resset sản phẩm');
             });
-        }
-
-        function Getcoin(id){
-            var contract = '<?php echo e(CRMSettings('contractaddress')); ?>';
-               GetCoinFromWinner(contract,id);
         }
 
         function PushProduct(id){
@@ -241,5 +242,13 @@
                 alert('Không thể đẩy sản phẩm lên sàn đấu giá');
             });
         }
+        $('#listproduct').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
     </script>
 <?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

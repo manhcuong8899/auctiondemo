@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>Quản lý sản phẩm</h1>
@@ -13,8 +11,9 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="{{ url('admin/products/update/'.$product->id) }}" method="POST" enctype="multipart/form-data">
-                        {!! csrf_field() !!}
+                    <form role="form" action="<?php echo e(url('admin/products/update/'.$product->id)); ?>" method="POST" enctype="multipart/form-data">
+                        <?php echo csrf_field(); ?>
+
                         <div class="box-body">
                             <div class="row">
                             <div class="col-md-6">
@@ -29,27 +28,27 @@
                                 <div class="col-md-6">
                                     <div class="col-md-6 form-group">
                                         <label for="title">Tên sản phẩm</label>
-                                        <input type="text" name="name" class="form-control" id="name" value="{{$product->name}}">
+                                        <input type="text" name="name" class="form-control" id="name" value="<?php echo e($product->name); ?>">
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label for="title">Mã sản phẩm</label>
-                                        <input type="text" name="code" class="form-control" id="code" value="{{$product->code}}">
+                                        <input type="text" name="code" class="form-control" id="code" value="<?php echo e($product->code); ?>">
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label for="title">Số lượng</label>
-                                        <input type="text" name="quantity" class="form-control" id="quantity" value="{{$product->quantity}}">
+                                        <input type="text" name="quantity" class="form-control" id="quantity" value="<?php echo e($product->quantity); ?>">
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label for="title">Giá sàn</label>
-                                        <input type="text" name="price" class="form-control" id="price" value="{{$product->price}}">
+                                        <input type="text" name="price" class="form-control" id="price" value="<?php echo e($product->price); ?>">
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label for="title">Thời gian bắt đầu</label>
-                                        <input type="text" name="starttime" class="form-control" id="starttime" value="{{$product->starttime}}">
+                                        <input type="text" name="starttime" class="form-control" id="starttime" value="<?php echo e($product->starttime); ?>">
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label for="title">Thời gian kết thúc</label>
-                                        <input type="text" name="endtime" class="form-control" id="endtime" value="{{$product->endtime}}">
+                                        <input type="text" name="endtime" class="form-control" id="endtime" value="<?php echo e($product->endtime); ?>">
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label>Trạng thái</label>
@@ -74,47 +73,48 @@
                                         </ul>
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab_1">
-                                                <div class="form-group {{ $errors->has('short') ? ' has-error' : ' has-feedback' }}">
+                                                <div class="form-group <?php echo e($errors->has('short') ? ' has-error' : ' has-feedback'); ?>">
                                                     <label for="title">Sơ lược sản phẩm</label>
-                                                    <textarea class="form-control" id="short" type="text" name="short" rows="5"/>{{$product->short}}</textarea>
-                                                    @if ($errors->has('short'))
+                                                    <textarea class="form-control" id="short" type="text" name="short" rows="5"/><?php echo e($product->short); ?></textarea>
+                                                    <?php if($errors->has('short')): ?>
                                                         <span class="help-block">
-												<strong>{{ $errors->first('short') }}</strong>
+												<strong><?php echo e($errors->first('short')); ?></strong>
 											</span>
-                                                    @endif
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                             <!-- /.tab-pane -->
                                             <div class="tab-pane" id="tab_2">
 
-                                                <div class="form-group {{ $errors->has('long') ? ' has-error' : ' has-feedback' }}">
+                                                <div class="form-group <?php echo e($errors->has('long') ? ' has-error' : ' has-feedback'); ?>">
                                                     <label for="title">Chi tiết sản phẩm</label>
-                                                    <textarea class="form-control" id="long" type="text" name="long" rows="5"/>{{$product->long}}</textarea>
-                                                    @if ($errors->has('long'))
+                                                    <textarea class="form-control" id="long" type="text" name="long" rows="5"/><?php echo e($product->long); ?></textarea>
+                                                    <?php if($errors->has('long')): ?>
                                                         <span class="help-block">
-												<strong>{{ $errors->first('long') }}</strong>
+												<strong><?php echo e($errors->first('long')); ?></strong>
 											</span>
-                                                    @endif
+                                                    <?php endif; ?>
                                                 </div>
 
                                             </div>
                                             <!-- /.tab-pane -->
                                             <div class="tab-pane" id="tab_3">
                                                 <div class="form-group">
-                                                    @foreach($files_images as $url)
-                                                        <div class="col-md-2 col-sm-3 col-xs-3 thumb" id="{{File::name('images/'.$url)}}">
+                                                    <?php foreach($files_images as $url): ?>
+                                                        <div class="col-md-2 col-sm-3 col-xs-3 thumb" id="<?php echo e(File::name('images/'.$url)); ?>">
                                                             <div class="close_images">
-                                                                <a onclick="ajax_dl_images('{{$url}}','{{File::name('images/'.$url)}}')"><i class="fa fa-times"></i></a>
+                                                                <a onclick="ajax_dl_images('<?php echo e($url); ?>','<?php echo e(File::name('images/'.$url)); ?>')"><i class="fa fa-times"></i></a>
                                                             </div>
                                                             <a class="thumbnail">
-                                                                <img class="img-responsive" src="{{asset('public/images/'.$url)}}">
+                                                                <img class="img-responsive" src="<?php echo e(asset('public/images/'.$url)); ?>">
                                                             </a>
 
                                                         </div>
-                                                    @endforeach
+                                                    <?php endforeach; ?>
                                                 </div>
                                                 <div class="form-group">
-                                                    {!! Form::file('input-image[]', array('multiple'=>true,'class'=>'file-loading','accept'=>'image/*','id'=>'input-image') )!!}
+                                                    <?php echo Form::file('input-image[]', array('multiple'=>true,'class'=>'file-loading','accept'=>'image/*','id'=>'input-image') ); ?>
+
                                                 </div>
                                             </div>
                                             <!-- /.tab-pane -->
@@ -138,11 +138,11 @@
             <!-- /.box -->
 
     </section><!-- /.content -->
-@stop
-@section('footerscripts')
-    <script src="{{ asset('plugins/fileinput/js/fileinput.min.js') }}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('footerscripts'); ?>
+    <script src="<?php echo e(asset('plugins/fileinput/js/fileinput.min.js')); ?>"></script>
 
-    <script src="{{ asset('plugins/editor/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+    <script src="<?php echo e(asset('plugins/editor/ckeditor/ckeditor.js')); ?>" type="text/javascript"></script>
     <script type="text/javascript">
         window.onload = function () {
             CKEDITOR.replace('short');
@@ -172,7 +172,7 @@
 
     <script>
         $("#input-image").fileinput({
-            uploadUrl: "{{url('images/articles/')}}",
+            uploadUrl: "<?php echo e(url('images/articles/')); ?>",
             uploadAsync: true,
             maxFileCount: 5,
             validateInitialCount: true,
@@ -186,10 +186,10 @@
     <script>
         function ajax_dl_images(url, id) {
             $.ajax({
-                url: '{{url('admin/products/ajax_images')}}',
+                url: '<?php echo e(url('admin/products/ajax_images')); ?>',
                 type: 'post',
                 cache: false,
-                data: {_method: 'delete',_token: '{{csrf_token()}}',link: url},
+                data: {_method: 'delete',_token: '<?php echo e(csrf_token()); ?>',link: url},
                 success: function(data){
                     $('#'+id).hide();
                     console.log(data);
@@ -197,4 +197,5 @@
             });
         };
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

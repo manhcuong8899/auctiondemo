@@ -101,8 +101,6 @@
 	<script src="<?php echo e(asset('/plugins/iCheck/icheck.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('/plugins/select2/select2.full.min.js')); ?>"></script>
 
-	<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
-
 	<!-- ckediter và ckfinder -->
 	<script type="text/javascript" src="<?php echo e(asset('plugins/editor/ckeditor/ckeditor.js')); ?>"></script>
 	<script type="text/javascript" src="<?php echo e(asset('plugins/editor/ckfinder/ckfinder.js')); ?>"></script>
@@ -115,10 +113,8 @@
 	<script src="<?php echo e(asset('themes/assets/js/connect_metamask.js')); ?>"></script>
 	<script src="<?php echo e(asset('themes/assets/js/dapp.js')); ?>"></script>
 	<script src="<?php echo e(asset('themes/assets/js/eth.js')); ?>"></script>
-
 </head>
-
-<body class="skin-blue-light sidebar-mini sidebar-collapse">
+<body class="hold-transition skin-blue-light sidebar-mini">
 <div class="wrapper">
 <?php echo $__env->make('includes.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php echo $__env->make('includes.mainsidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
@@ -134,7 +130,7 @@
 <!-- Custom scripts -->
 <script src="<?php echo e(asset('/dist/js/custom.js')); ?>"></script>
 <script>
-    $("#report_order").click(function () {
+       $("#report_order").click(function () {
         $("#ReportOrderForm").submit();
     });
     $('#fromdate').datetimepicker({

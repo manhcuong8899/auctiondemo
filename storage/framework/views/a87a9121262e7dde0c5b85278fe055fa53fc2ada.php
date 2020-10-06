@@ -9,11 +9,24 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li class="<?php echo e(setMenuActive('admin/products')); ?>"><a href="<?php echo e(url('admin/products')); ?>"><i class="fa fa-list"></i>Tất cả sản phẩm</a></li>
             <li class="<?php echo e(setMenuActive('admin/create/products')); ?>"><a href="<?php echo e(url('admin/create/products')); ?>"><i class="fa fa-plus"></i>Thêm mới sản phẩm</a></li>
-            <li class="<?php echo e(setMenuActive('admin/products/status/pending')); ?>"><a href="<?php echo e(url('admin/products/status/pending')); ?>"><i class="fa fa-warning"></i>Sản phẩm chờ mở phiên</a></li>
-            <li class="<?php echo e(setMenuActive('admin/products/status/active')); ?>"><a href="<?php echo e(url('admin/products/status/active')); ?>"><i class="fa fa-opencart"></i>Sản phẩm mở phiên</a></li>
-            <li class="<?php echo e(setMenuActive('admin/products/status/inactive')); ?>"><a href="<?php echo e(url('admin/products/status/inactive')); ?>"><i class="fa fa-close"></i>Sản phẩm phiên kết thúc</a></li>
+            <li class="<?php echo e(setMenuActive('admin/products')); ?>"><a href="<?php echo e(url('admin/products')); ?>"><i class="fa fa-list"></i>Tất cả sản phẩm</a></li>
+            <li class="<?php echo e(setMenuActive('admin/products/status/pending')); ?>"><a href="<?php echo e(url('admin/products/status/pending')); ?>"><i class="fa fa-warning"></i>Chờ mở phiên</a></li>
+            <li class="<?php echo e(setMenuActive('admin/products/status/active')); ?>"><a href="<?php echo e(url('admin/products/status/active')); ?>"><i class="fa fa-opencart"></i>Đã mở phiên</a></li>
+        </ul>
+    </li>
+    <li class="treeview <?php echo e(setMenuActive('admin/auctions')); ?>">
+        <a href="#">
+            <i class="fa fa-shopping-cart"></i>
+            <span>Quản lý phiên</span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li class="<?php echo e(setMenuActive('admin/auctions')); ?>"><a href="<?php echo e(url('admin/auctions')); ?>"><i class="fa fa-list"></i>Danh sách phiên</a></li>
+            <li class="<?php echo e(setMenuActive('admin/auctions/status/active')); ?>"><a href="<?php echo e(url('admin/auctions/status/active')); ?>"><i class="fa fa-warning"></i>Phiên đang mở</a></li>
+            <li class="<?php echo e(setMenuActive('admin/auctions/status/finish')); ?>"><a href="<?php echo e(url('admin/auctions/status/finish')); ?>"><i class="fa fa-close"></i>Phiên bán thành công</a></li>
+            <li class="<?php echo e(setMenuActive('admin/auctions/status/success')); ?>"><a href="<?php echo e(url('admin/auctions/status/success')); ?>"><i class="fa fa-close"></i>Phiên hoàn thành</a></li>
+            <li class="<?php echo e(setMenuActive('admin/auctions/status/inactive')); ?>"><a href="<?php echo e(url('admin/auctions/status/inactive')); ?>"><i class="fa fa-opencart"></i>Phiên không người đặt</a></li>
         </ul>
     </li>
 <?php endif; ?>
@@ -25,12 +38,7 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li class="<?php echo e(setMenuActive('admin/customer')); ?>"><a href="<?php echo e(url('admin/customer')); ?>"><i class="fa fa-list"></i>Tất cả khách hàng</a></li>
-            <li class="<?php echo e(setMenuActive('admin/customer/gold')); ?>"><a href="<?php echo e(url('admin/customer/gold')); ?>"><i class="fa fa-user-secret"></i>Thành viên vàng</a></li>
-            <li class="<?php echo e(setMenuActive('admin/customer/silver')); ?>"><a href="<?php echo e(url('admin/customer/silver')); ?>"><i class="fa fa-user-circle-o"></i>Thành viên bạc</a></li>
-            <li class="<?php echo e(setMenuActive('admin/customer/bronze')); ?>"><a href="<?php echo e(url('admin/customer/bronze')); ?>"><i class="fa fa-user-secret"></i>Thành viên đồng</a></li>
-            <li class="<?php echo e(setMenuActive('admin/customer/regular')); ?>"><a href="<?php echo e(url('admin/customer/regular')); ?>"><i class="fa fa-user-secret"></i>Thành viên thường</a></li>
-
+            <li class="<?php echo e(setMenuActive('admin/customer')); ?>"><a href="<?php echo e(url('admin/customer')); ?>"><i class="fa fa-list"></i>Danh sách khách hàng</a></li>
         </ul>
     </li>
 <?php endif; ?>

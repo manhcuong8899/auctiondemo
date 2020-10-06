@@ -3,7 +3,7 @@
 <meta name="robots" content="index,follow" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('public/images/favicon.ico')); ?>" />
-    <title>AUCTION-BK SÀN ĐẤU GIÁ ĐỒ CỔ TRỰC TUYẾN</title>
+    <title>SÀN ĐẤU GIÁ MUA HÀNG TRỰC TUYẾN</title>
     <link href="favicon.png" type="image/x-icon" rel="shortcut icon">
     <link rel="stylesheet" href="<?php echo e(asset('themes/assets/css/style.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('themes/assets/vendors/owcarousel/owl.carousel.css')); ?>">

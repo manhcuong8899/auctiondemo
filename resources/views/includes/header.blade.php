@@ -14,26 +14,6 @@
 			</a>
 			<div class="navbar-custom-menu">
 				<ul class="nav navbar-nav">
-
-					<!-- Application locale switcher -->
-
-						{{--<li class="dropdown messages-menu locale-dropdown pull-left">
-							<a href="#" class="dropdown-toggle pull-left" data-toggle="dropdown">
-                                <i class="fa fa-flag"></i>&nbsp;{{ config('app.locale') }}&nbsp;<i class="caret"></i>
-							</a>
-							<ul class="dropdown-menu">
-								@foreach (config('app.supported_locales') as $lang => $language)
-									@if ($lang != getCurrentSessionAppLocale())
-									<li>
-										<a href="{{ route('locale.switch', $lang) }}">{{$language}}</a>
-									</li>
-									@endif
-								@endforeach
-							</ul>
-						</li>--}}
-
-
-					<!-- User Account: style can be found in dropdown.less -->
 					<li class="dropdown user user-menu">
 
 						<!-- Authentication Links -->

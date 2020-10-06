@@ -86,8 +86,6 @@
                         </div>
                         <div class="row-input">
                             <button type="submit" class="login_button btn-black">ĐĂNG NHẬP</button>
-                            <button type="button" class="login_button btn-facebook">ĐĂNG NHẬP BẰNG FACEBOOK</button>
-                            <button type="button" class="login_button btn-gmail">ĐĂNG NHẬP BẰNG GMAIL</button>
                         </div>
                     </form>
                 </div>
@@ -219,10 +217,6 @@
                         <div class="row-input">
                             <input class="f-login-input" type="text" placeholder="Địa chỉ" name="address">
                         </div>
-                        <div class="row-input text-center">
-                            <p class="sm2-padding">Bằng việc đăng ký tài khoản, bạn đã đồng ý với <a href="{{url('dieukhoansudung.html')}}" TARGET="_blank"> <span style="text-decoration: underline;">điều kiện sử dụng BF365.vn</span></a></p>
-                        </div>
-
                         <div class="row-input">
                             <button type="button" class="login_button btn_create btn-black" id="submitregister">ĐĂNG KÝ</button>
                         </div>

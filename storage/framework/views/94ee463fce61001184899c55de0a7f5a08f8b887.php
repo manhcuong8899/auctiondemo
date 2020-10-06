@@ -23,14 +23,6 @@
                     </ul>
                 </li>
                 <?php endif; ?>
-            <li>
-                <a class="icon-cart-qty" href="<?php echo e(url('cart')); ?>">
-                    <i class="fa fa-shopping-cart"></i>
-                    <span class="exp-cart-qty"><?php echo e(Cart::instance('cart')->content()->count()); ?></span>
-                </a>
-            </li>
         </ul>
-
-
 </div>
 <!-- /.navbar-top -->

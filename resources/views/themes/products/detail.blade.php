@@ -132,9 +132,8 @@
                 });
 
                 getStatus(contract,proid,function(status){
-                    //////////
-                });
 
+                });
                 // Check điều kiện người dùng đã đăng nhập và đặt giá
                         @if(!Auth::guest())
                 var bidder ='{{Auth::user()->profile->wallet}}';

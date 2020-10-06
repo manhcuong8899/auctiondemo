@@ -1,15 +1,4 @@
 <?php
-
-//Route::api('v1', function () {  
-//});
-
-Route::get('login/{social}', '\App\Http\Controllers\Auth\AuthController@redirectToProvider');
-Route::get('login/{social}/callback', '\App\Http\Controllers\Auth\AuthController@handleProviderCallback');
-Route::get('config/getConfig', '\App\Http\Controllers\Fontend\HomeController@getConfig');
-Route::get('config/getInfo', '\App\Http\Controllers\Fontend\HomeController@getInfo');
-Route::get('package/packagepriceexcel', '\App\Http\Controllers\Fontend\PackageController@packagepriceexcel');
-
-
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
    /* Route::get('/', function () {
         return redirect('admin/login');
@@ -74,11 +63,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     /* Products routes */
     Route::get('products', 'ProductsController@index');
-
     Route::get('create/products', 'ProductsController@create');
-
     Route::get('products/status/{code}', 'ProductsController@status');
-
     Route::post('products/create', 'ProductsController@postcreate');
     Route::post('products/aupdate/{id}/{price}/{quantity}/{starttime}/{endtime}','ProductsController@aupdate');
     Route::get('products/listdetail/{slug_name}','ProductsController@listdetail');
@@ -91,15 +77,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('products/import', 'ProductsController@postimport');
     Route::get('products/seach', 'ProductsController@seach');
 
-    /* Tips routes */
-
-    Route::get('tips', 'TipHomeController@index');
-    Route::get('tips/create', 'TipHomeController@create');
-    Route::post('tips/create', 'TipHomeController@postcreate');
-    Route::post('tips/order', 'TipHomeController@orders');
-    Route::get('tips/edit/{id}', 'TipHomeController@edit');
-    Route::post('tips/edit/{id}', 'TipHomeController@postupdate');
-    Route::get('tips/delete/{id}', 'TipHomeController@delete');
+    /* Auctions routes */
+    Route::get('auctions', 'AuctionsController@index');
+    Route::get('auctions/status/active', 'AuctionsController@active');
+    Route::get('auctions/status/inactive', 'AuctionsController@inactive');
+    Route::get('auctions/status/finish', 'AuctionsController@finish');
+    Route::get('auctions/status/success', 'AuctionsController@success');
 
     /* Content Website */
     Route::get('content', 'ContentController@index');
@@ -121,14 +104,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::delete('menus/delete/{id}', 'SupperMenusController@delete');
 
 
-    /* Coupons routes */
-    Route::get('coupons', 'CouponsController@index');
-    Route::post('coupons/create', 'CouponsController@postcreate');
-    Route::get('coupons/edit/{id}', 'CouponsController@edit');
-    Route::post('coupons/edit/{id}', 'CouponsController@postupdate');
-    Route::delete('coupons/delete/{id}', 'CouponsController@delete');
-
-
     /* Groups Products routes */
     Route::get('groupproducts', 'GroupproductsController@index');
     Route::post('groupproducts/create', 'GroupproductsController@postcreate');
@@ -137,33 +112,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::delete('groupproducts/delete/{id}', 'GroupproductsController@delete');
 
 
-    /* Properties routes */
-    Route::get('properties', 'PropertiesController@index');
-    Route::get('create/properties', 'PropertiesController@create');
-    Route::post('properties/create', 'PropertiesController@postcreate');
-    Route::post('properties/create/cates', 'PropertiesController@postcreatecates');
-    Route::get('properties/edit/{id}', 'PropertiesController@edit');
-    Route::post('properties/edit/{id}', 'PropertiesController@postupdate');
-    Route::get('properties/delete/{id}', 'PropertiesController@delete');
-
-    /* User level routes */
-    Route::get('userlevel', 'UserlevelController@index');
-    Route::get('create/userlevel', 'UserlevelController@create');
-    Route::post('userlevel/create', 'UserlevelController@postcreate');
-    Route::post('userlevel/create/cates', 'UserlevelController@postcreatecates');
-    Route::get('userlevel/edit/{id}', 'UserlevelController@edit');
-    Route::post('userlevel/edit/{id}', 'UserlevelController@postupdate');
-    Route::get('userlevel/delete/{id}', 'UserlevelController@delete');
-
-    /* Support level routes */
-    Route::get('support', 'SupportController@index');
-    Route::get('create/support', 'SupportController@create');
-    Route::post('support/create', 'SupportController@postcreate');
-    Route::post('support/create/cates', 'SupportController@postcreatecates');
-    Route::get('support/edit/{id}', 'SupportController@edit');
-    Route::post('support/edit/{id}', 'SupportController@postupdate');
-    Route::get('support/delete/{id}', 'SupportController@delete');
-
     /* Customers level routes */
 
     Route::get('exportcustomer/{level}', 'CustomersController@exportCustomer');
@@ -171,40 +119,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('customer/{level}', 'CustomersController@level');
     Route::post('customer/create', 'CustomersController@create');
     Route::post('movelevel/customer/{id}', 'CustomersController@movelevel');
-
-
-    /* Report level routes */
-
-    Route::get('report/online', 'ReportsController@online');
-    Route::post('report/orderexcel', 'ReportsController@orderexcel');
-
-    /* Units level routes */
-    Route::get('units', 'UnitsController@index');
-    Route::get('create/units', 'UnitsController@create');
-    Route::post('units/create', 'UnitsController@postcreate');
-    Route::get('units/edit/{id}', 'UnitsController@edit');
-    Route::post('units/edit/{id}', 'UnitsController@postupdate');
-    Route::get('units/delete/{id}', 'UnitsController@delete');
-
-
-    /* Currency level routes */
-    Route::get('currency', 'CurrencyController@index');
-    Route::get('create/currency', 'CurrencyController@create');
-    Route::post('currency/create', 'CurrencyController@postcreate');
-    Route::get('currency/edit/{id}', 'CurrencyController@edit');
-    Route::post('currency/edit/{id}', 'CurrencyController@postupdate');
-    Route::get('currency/delete/{id}', 'CurrencyController@delete');
-
-
-    /* Notification level routes */
-    Route::post('notification/edit/{id}', 'NotificationController@postupdate');
-    Route::get('notification/delete/{id}', 'NotificationController@delete');
-    Route::get('notification/{group}/{code}', 'NotificationController@index');
-    Route::get('notification/{group}/{code}/edit/{id}', 'NotificationController@edit');
-    Route::post('notification/create/{group}/{code}', 'NotificationController@postcreate');
-
-
-    Route::post('send/notification/{id}', 'NotificationController@send');
 
     /* Sendemails level routes */
     Route::get('sendemails/exportemail/{status}', 'SendemailsController@exportEmail');
@@ -217,14 +131,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('sendemails/edit/{id}', 'SendemailsController@postupdate');
     Route::get('sendemails/delete/{id}', 'SendemailsController@delete');
 
-
-    /* Feedback l routes */
-    Route::get('feedback', 'FeedbackController@index');
-    Route::get('feedback/view/{id}', 'FeedbackController@view');
-    Route::post('feedback/reply', 'FeedbackController@postReply');
-    Route::get('feedback/delete/{id}', 'FeedbackController@delete');
-    Route::get('feedback/status/{code}', 'FeedbackController@status');
-
     /* Imgaes routes */
     Route::post('images/order', 'ImagesController@orders');
     Route::get('images', 'ImagesController@index');
@@ -234,32 +140,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('images/edit/{id}', 'ImagesController@postupdate');
     Route::get('images/delete/{id}', 'ImagesController@delete');
     Route::get('images/seach', 'ImagesController@seach');
-
-    /* Crawler routes */
-    Route::get('crawler', 'CrawlerController@index');
-    Route::get('create/crawler', 'CrawlerController@create');
-    Route::post('crawler/create', 'CrawlerController@postcreate');
-    Route::get('crawler/edit/{id}', 'CrawlerController@edit');
-    Route::post('crawler/edit/{id}', 'CrawlerController@postupdate');
-    Route::get('crawler/delete/{id}', 'CrawlerController@delete');
-    /* Order routes */
-    Route::get('order/{type}','OrdersController@type');
-    Route::get('order/{type}/{status}','OrdersController@status');
-    Route::post('movestatus/order/{id}','OrdersController@movestatus');
-    Route::get('delete/order/{id}','OrdersController@delete');
-    Route::post('seach/order','OrdersController@seach');
-    Route::get('view/order/{id}','OrdersController@detail');
-
-
-    /* Complaints routes */
-    Route::get('complaint', 'ComplaintsController@index');
-    Route::get('complaint/{status}', 'ComplaintsController@status');
-    Route::get('view/complaint/{id}', 'ComplaintsController@view');
-    Route::get('complaint/view/{id}', 'ComplaintsController@view');
-    Route::post('movestatus/complaint/{id}', 'ComplaintsController@movestatus');
-    Route::get('delete/complaint/{id}', 'ComplaintsController@delete');
-    Route::post('seach/complaint', 'ComplaintsController@seach');
-    Route::get('complaint/changestatus', 'ComplaintsController@changestatus');
 
     /* Application settings routes */
     Route::get('settings', function () {
@@ -303,6 +183,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     /* Ajax routes */
     Route::post('bindproduct', 'AjaxController@bindproduct');
+    Route::post('changestatus', 'AjaxController@changestatus');
+    Route::post('resetproduct', 'AjaxController@resetproduct');
     Route::post('urlcategories', 'AjaxController@urlcategories');
     Route::post('updateprobind', 'AjaxController@postBindId');
     Route::post('cateforproperty', 'AjaxController@cateforproperty');

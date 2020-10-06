@@ -36,6 +36,23 @@
             alert('Lỗi gửi dữ liệu');
         });
     });
+/// Hàm lấy giá trị ETH cần trả lại người dùng
+    @if(!Auth::guest())
+    var contractaddress = '{{$settings['contractaddress']}}';
+    var wallet ='{{Auth::user()->profile->wallet}}';
+    getRefundValue(contractaddress,wallet,function(value){
+        $('[name="withraw"]').html(value + ',00');
+        if(value>0){
+            $('#withraweth').click(function(){
+                ruttien(contractaddress);
+            });
+        }else{
+            $('#withraweth').css("display", "none");
+        }
+    })
+    @endif
+
+
 </script>
 
 

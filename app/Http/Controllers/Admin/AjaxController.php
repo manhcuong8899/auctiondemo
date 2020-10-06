@@ -164,6 +164,31 @@ class AjaxController extends Controller
         return response::json($data);
     }
 
+    public function changestatus(Request $request)
+    {
+        $p = Products::where('bind',$request->proId)->first();
+        $p->status = 2;
+        $p->save();
+        $data = array(
+            'id'=> $p->id,
+            'status'=> $p->status
+        );
+        return response::json($data);
+    }
+    public function resetproduct(Request $request)
+    {
+        $p = Products::find($request->proId);
+        $p->status = 0;
+        $p->bind = null;
+        $p->save();
+        $data = array(
+            'id'=> $p->id,
+            'status'=> $p->status,
+            'bind'=> $p->bind
+        );
+        return response::json($data);
+    }
+
     public function postBindId(Request $request)
     {
         $p = Products::find($request->proid);

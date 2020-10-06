@@ -1,9 +1,7 @@
-@extends('themes.members')
-
-@section('page_title')
+<?php $__env->startSection('page_title'); ?>
     Lịch sử tham dự đấu giá
-@endsection
-@section('main-content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('main-content'); ?>
     <div class="col-sm-9">
         <div class="acc-right">
             <h3 class="acc_title">Lịch sử tham dự đấu giá</h3>
@@ -85,8 +83,8 @@
             </div>
         </div>
     </div><!-- /.col-sm  -->
-@endsection
-@section('page-script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page-script'); ?>
     <script type="text/javascript">
         $(document).on('ready', function(){
             $('.btn-details').click(function(){
@@ -99,9 +97,9 @@
                 var summaryInfo = $(this).closest('.item').find('.summaryInfo').slideToggle();
             });
         });
-      @if(!Auth::guest())
-        var contract = '{{$settings['contractaddress']}}';
-        var bidder ='{{Auth::user()->profile->wallet}}';
+      <?php if(!Auth::guest()): ?>
+        var contract = '<?php echo e($settings['contractaddress']); ?>';
+        var bidder ='<?php echo e(Auth::user()->profile->wallet); ?>';
         var wallet = bidder.toLowerCase();
         getUserBind(contract,bidder,function (Products){
             var numbers = Products.length;
@@ -137,8 +135,9 @@
                 });
             }
         });
-        @endif
+        <?php endif; ?>
 
 
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('themes.members', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -14,26 +14,6 @@
 			</a>
 			<div class="navbar-custom-menu">
 				<ul class="nav navbar-nav">
-
-					<!-- Application locale switcher -->
-
-						<?php /*<li class="dropdown messages-menu locale-dropdown pull-left">
-							<a href="#" class="dropdown-toggle pull-left" data-toggle="dropdown">
-                                <i class="fa fa-flag"></i>&nbsp;<?php echo e(config('app.locale')); ?>&nbsp;<i class="caret"></i>
-							</a>
-							<ul class="dropdown-menu">
-								<?php foreach(config('app.supported_locales') as $lang => $language): ?>
-									<?php if($lang != getCurrentSessionAppLocale()): ?>
-									<li>
-										<a href="<?php echo e(route('locale.switch', $lang)); ?>"><?php echo e($language); ?></a>
-									</li>
-									<?php endif; ?>
-								<?php endforeach; ?>
-							</ul>
-						</li>*/ ?>
-
-
-					<!-- User Account: style can be found in dropdown.less -->
 					<li class="dropdown user user-menu">
 
 						<!-- Authentication Links -->

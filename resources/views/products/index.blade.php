@@ -21,7 +21,7 @@
                 <br style="clear:both;">
                 <br style="clear:both;">
                 @can('product_management')
-                <table  class="table table-responsive table-bordered table-hover table-striped">
+                <table id="listproduct" class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th>{{ trans('VNPCMS.forms.tables.columns.id') }}</th>
@@ -69,11 +69,10 @@
                             <td>
                                 @can('product_management')
                                     @if($checktime==1 && $product->status==1 )
-                                        <a id="{{$product->id}}" class="btn btn-xs btn-default btn-flat"  onclick="PushProduct(this.id);"> <i class="fa fa fa-remove text-red"></i> Hủy đấu giá</a>
+
                                     @elseif($checktime==2 && $product->status==1)
-                                        <a id="{{$product->bind}}" class="btn btn-xs btn-default btn-flat"  onclick="PushEndAuction(this.id);"> <i class="fa fa fa-calendar-times-o text-blue"></i> Đóng phiên</a>
-                                    @elseif ($checktime==2 && $product->status==2)
-                                        <a id="{{$product->bind}}" class="btn btn-xs btn-default btn-flat"  onclick="Getcoin(this.id);"> <i class="fa fa fa-calendar-times-o text-blue"></i> Nhận Coin</a>
+                                    <a id="{{$product->id}}" class="btn btn-xs btn-default btn-flat"  onclick="ressetproduct(this.id);"> <i class="fa fa fa-product-hunt text-red"></i> Thu sản phẩm</a>
+
                                     @else
                                         <a id="{{$product->id}}" class="btn btn-xs btn-default btn-flat"  onclick="PushProduct(this.id);"> <i class="fa fa fa-plus text-blue"></i> Mở Phiên</a>
                                         <a data-productname="{{$product->name}}" data-productid="{{$product->id}}" data-updaterurl="{{url('admin/products/aupdate/'.$product->id)}}" title="Cập nhật sản phẩm" class="btn btn-xs btn-default btn-flat" data-toggle="modal" data-target="#aUpdateDialog">
@@ -190,16 +189,18 @@
     </section><!-- /.content -->
 @stop
     <script>
-
-        function PushEndAuction(id){
-            var contract = '{{CRMSettings('contractaddress')}}';
-            endAuction(contract,id,function(kq) {
+        function ressetproduct(proid) {
+            $.ajax({
+                url: '{{url('admin/resetproduct')}}',
+                dataType: "json",
+                type: "post",
+                data: {_method: 'post', _token: '{{csrf_token()}}', proId: proid}
+            }).done(function(data){
+                alert('Thu hồi sản phẩm thành công');
+                location.reload();
+            }).fail(function(data){
+                alert('Lỗi Resset sản phẩm');
             });
-        }
-
-        function Getcoin(id){
-            var contract = '{{CRMSettings('contractaddress')}}';
-               GetCoinFromWinner(contract,id);
         }
 
         function PushProduct(id){
@@ -235,4 +236,12 @@
                 alert('Không thể đẩy sản phẩm lên sàn đấu giá');
             });
         }
+        $('#listproduct').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
     </script>

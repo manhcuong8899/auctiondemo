@@ -1,0 +1,120 @@
+<?php $__env->startSection('content'); ?>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Quản lý phiên</h1>
+    </section>
+
+    <section class="content">
+        <!-- Default box -->
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Danh sách phiên</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="allauctions" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá sàn</th>
+                        <th>Giá hiện tại</th>
+                        <th>Thời gian kết thúc phiên</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá sàn</th>
+                        <th>Giá hiện tại</th>
+                        <th>Thời gian kết thúc phiên</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </section><!-- /.content -->
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('footerscripts'); ?>
+    <script>
+        var contract = '<?php echo e(CRMSettings('contractaddress')); ?>';
+        getProductCount(contract,function(Total){
+            var stt =1;
+            var proid = Total-1;
+           for(var i=Total-1; i>=0; i--){
+               queryProduct(contract,i,function (data) {
+                   var date = new Date(data[3]*1000).toUTCString("en-US",{timeZone: "Asia/Ho_Chi_Minh"});
+                   var name = getstatus(data[6],data[3]);
+                   var html = actions(data[6],data[3],proid);
+                   $('#allauctions').DataTable().row.add([
+                       stt, '<a href="auction/viewbind/'+proid+'" title="Hiển thị danh sách người đặt đấu giá mua sản phẩm này">' + data[1] +'<a>', data[4] + ' ETH', data[5] + ' ETH', date, name,html
+                   ]).draw();
+                   stt++;
+                   proid--;
+               })
+           }
+        });
+        function getstatus(status,date){
+            var name;
+            var now ='<?php echo e($now); ?>';
+            if(status==1){
+                name='<span style="color: #6d05a3"> <b>Đang mở phiên</b></span>';
+            };
+            if(status==1 && now>date){
+                name='<span style="color: #ff0000"> <b>Hết thời gian phiên</b></span>';
+            };
+            if(status==2){
+                name='Không người đặt';
+            };
+            if(status==3){
+                name='<span style="color: #000000"> <b>Đã đóng phiên</b></span>';
+            };
+            if(status==4){
+                name='<span style="color: #0505cd"> Bán thành công</span>';
+            };
+            return name;
+        }
+        function actions(status,date,id){
+            var now ='<?php echo e($now); ?>';
+            var html="";
+            if(status==1 && now>date){
+                html='<a id="'+id+'" class="btn btn-xs btn-default btn-flat"  onclick="PushEndAuction(this.id);"> <i class="fa fa fa-calendar-times-o text-blue"></i> Đóng phiên</a>';
+            };
+            if(status==3){
+                html='<a id="'+id+'" class="btn btn-xs btn-default btn-flat"  onclick="Getcoin(this.id);"> <i class="fa fa-bitcoin text-red"></i> Nhận Coin</a>';
+
+            };
+            return html;
+        }
+        function PushEndAuction(id){
+            var contract = '<?php echo e(CRMSettings('contractaddress')); ?>';
+            endAuction(contract,id,function(kq) {
+               console.log(kq);
+            });
+        }
+        function Getcoin(id){
+            var contract = '<?php echo e(CRMSettings('contractaddress')); ?>';
+              GetCoinFromWinner(contract,id);
+        }
+
+        $('#allauctions').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+
+    </script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -23,14 +23,6 @@
                     </ul>
                 </li>
                 @endif
-            <li>
-                <a class="icon-cart-qty" href="{{url('cart')}}">
-                    <i class="fa fa-shopping-cart"></i>
-                    <span class="exp-cart-qty">{{Cart::instance('cart')->content()->count()}}</span>
-                </a>
-            </li>
         </ul>
-
-
 </div>
 <!-- /.navbar-top -->
