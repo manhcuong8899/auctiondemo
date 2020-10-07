@@ -9,7 +9,7 @@
             <h3 class="acc_title">Lịch sử tham dự đấu giá</h3>
             <ul class="nav nav-tabs acc-order-nav" role="tablist">
                 <li class="active"><a href="#all" data-toggle="tab">Tất cả giao giao dịch</a></li>
-                <li ><a href="#active" data-toggle="tab">Giao dịch đang thực hiện</a></li>
+                <li ><a href="#active" data-toggle="tab">Giao dịch đang đặt cao nhất</a></li>
                 <li><a href="#winner" data-toggle="tab">Giao dịch thắng cuộc</a></li>
                 <li><a href="#return" data-toggle="tab">Giao dịch hoàn lại</a></li>
             </ul>
@@ -78,7 +78,7 @@
                             </table>
                         </div><!--/.tab-content-->
                         <div align="center">
-                          <button class="p-btn startus-endbind" id="withraweth"><b>RÚT <span name="withraw"></span> ETH </b></button>
+                          <button class="p-btn startus-endbind" id="withraweth"><b>RÚT <span name="withraw"></span> ETH</b></button>
                         </div>
                     </div><!--/.col-12-->
                 </div><!--/.tab 3-->
@@ -138,7 +138,6 @@
                         })
                     })
                 })
-
             }
         })
 

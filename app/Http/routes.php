@@ -83,6 +83,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('auctions/status/inactive', 'AuctionsController@inactive');
     Route::get('auctions/status/finish', 'AuctionsController@finish');
     Route::get('auctions/status/success', 'AuctionsController@success');
+    Route::get('auctions/viewbind/{proid}', 'AuctionsController@viewbind');
 
     /* Content Website */
     Route::get('content', 'ContentController@index');

@@ -26,7 +26,8 @@
                     <tr>
                         <th>{{ trans('VNPCMS.forms.tables.columns.id') }}</th>
                         <th>{{ trans('VNPCMS.forms.tables.columns.name') }}</th>
-                        <th>Giá bán (ETH)</th>
+                        <th>Giá sản phẩm (ETH)</th>
+                        <th>Giá sàn (ETH)</th>
                         <th>Số lượng</th>
                         <th>Thời gian bắt đầu</th>
                         <th>Thời gian kết thúc</th>
@@ -45,7 +46,7 @@
                             <td>{{ $product->id }}</td>
                             <td>{{ $product->name }}</td>
                                 <td><input class="form-control" value="{{ number_format($product->price,2,'.',',')}}" id="price{{$product->id}}" style="width: 60px"></td>
-
+                                 <td><font color="#ff0000"> {{ number_format($product->price +1,2,'.',',')}} ETH</font> </td>
                                 <td><input class="form-control" value="{{ $product->quantity}}" id="quantity{{$product->id}}" style="width: 60px"></td>
                                 <td><input type="text" class="form-control" value="{{ $product->starttime}}" id="starttime{{$product->id}}" style="width: 150px"></td>
                                 <td>

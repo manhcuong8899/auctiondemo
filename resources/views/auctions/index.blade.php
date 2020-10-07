@@ -50,17 +50,16 @@
         var contract = '{{CRMSettings('contractaddress')}}';
         getProductCount(contract,function(Total){
             var stt =1;
-            var proid = Total-1;
            for(var i=Total-1; i>=0; i--){
                queryProduct(contract,i,function (data) {
                    var date = new Date(data[3]*1000).toUTCString("en-US",{timeZone: "Asia/Ho_Chi_Minh"});
                    var name = getstatus(data[6],data[3]);
-                   var html = actions(data[6],data[3],proid);
+                   var html = actions(data[6],data[3],data[0]);
+                   var urlview ='{{url('admin/auctions/viewbind')}}/'+data[0];
                    $('#allauctions').DataTable().row.add([
-                       stt, '<a href="auction/viewbind/'+proid+'" title="Hiển thị danh sách người đặt đấu giá mua sản phẩm này">' + data[1] +'<a>', data[4] + ' ETH', data[5] + ' ETH', date, name,html
+                       stt, '<a href="'+urlview+'" title="Hiển thị danh sách người đặt đấu giá mua sản phẩm này">' + data[1] +'<a>',parseInt(data[4]) +1 + ' ETH', data[5] + ' ETH', date, name,html
                    ]).draw();
                    stt++;
-                   proid--;
                })
            }
         });

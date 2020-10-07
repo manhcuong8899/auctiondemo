@@ -145,6 +145,10 @@ var abi=[
         "name": "products",
         "outputs": [
             {
+                "name": "id",
+                "type": "uint256"
+            },
+            {
                 "name": "p_id",
                 "type": "uint256"
             },
@@ -199,6 +203,10 @@ var abi=[
         ],
         "name": "getBidProduct",
         "outputs": [
+            {
+                "name": "id",
+                "type": "uint256"
+            },
             {
                 "name": "bidder",
                 "type": "address"
@@ -297,7 +305,7 @@ var abi=[
         "name": "queryProduct",
         "outputs": [
             {
-                "name": "id",
+                "name": "productid",
                 "type": "uint256"
             },
             {
@@ -377,6 +385,10 @@ var abi=[
         ],
         "name": "Winner",
         "outputs": [
+            {
+                "name": "id",
+                "type": "uint256"
+            },
             {
                 "name": "bidder",
                 "type": "address"
@@ -774,7 +786,6 @@ function getHistoryCount(contractaddress,binder,totalhis){
             };
         });
 };
-
 
 
 function GetFormattedDate(date) {

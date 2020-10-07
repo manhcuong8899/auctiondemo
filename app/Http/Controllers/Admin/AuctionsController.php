@@ -72,9 +72,13 @@ class AuctionsController extends Controller
     }
     public function success()
     {
-        $now = Carbon::now('Asia/Ho_Chi_Minh');
-        $now = strtotime($now);
         return view('auctions.success');
+    }
+
+    public function viewbind(Request $request)
+    {
+        $proid =$request->proid;
+        return view('auctions.viewbind',compact('proid'));
     }
 
 }

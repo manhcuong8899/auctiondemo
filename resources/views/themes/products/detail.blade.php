@@ -117,12 +117,12 @@
                         var stt =1;
                         for (var i = totalBind-1; i >=0; i--){
                             getBidProduct(contract,proid,i,function (data){
-                                var date = new Date(data[4]*1000);
+                                var date = new Date(data[5]*1000);
                                 $('#table_tbody').append("<tr>" +
                                     "<td class='nsg-bg--white' style='height:40px;'>"+ stt + "</td>" +
-                                    "<td class='nsg-bg--white' style='height:40px;'>" +data[0] + "</td>" +
                                     "<td class='nsg-bg--white' style='height:40px;'>" +data[1] + "</td>" +
-                                    "<td class='nsg-bg--white' style='height:40px;'>" +data[3] + " ETH </td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>" +data[2] + "</td>" +
+                                    "<td class='nsg-bg--white' style='height:40px;'>" +data[4] + " ETH </td>" +
                                     "<td class='nsg-bg--white' style='height:40px;'> " + date + "</td>"+
                                     "</tr>");
                                 stt++;

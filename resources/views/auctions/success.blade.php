@@ -19,8 +19,9 @@
                         <th>STT</th>
                         <th>Tên sản phẩm</th>
                         <th>Giá sàn</th>
-                        <th>Giá hiện tại</th>
+                        <th>Giá bán</th>
                         <th>Thời gian kết thúc phiên</th>
+                        <th>Thắng đấu giá</th>
                         <th>Trạng thái</th>
                     </tr>
                     </thead>
@@ -32,8 +33,9 @@
                         <th>STT</th>
                         <th>Tên sản phẩm</th>
                         <th>Giá sàn</th>
-                        <th>Giá hiện tại</th>
+                        <th>Giá bán</th>
                         <th>Thời gian kết thúc phiên</th>
+                        <th>Thắng đấu giá</th>
                         <th>Trạng thái</th>
                     </tr>
                     </tfoot>
@@ -48,17 +50,20 @@
         var contract = '{{CRMSettings('contractaddress')}}';
         getProductCount(contract,function(Total){
             var stt =1;
-            var proid = Total-1;
            for(var i=Total-1; i>=0; i--){
                queryProduct(contract,i,function (data) {
                    var date = new Date(data[3]*1000).toUTCString("en-US",{timeZone: "Asia/Ho_Chi_Minh"});
                    var name = getstatus(data[6],data[3]);
                    if(data[6]==4){
-                       $('#allauctions').DataTable().row.add([
-                           stt, '<a href="auction/viewbind/'+proid+'" title="Hiển thị danh sách người đặt đấu giá mua sản phẩm này">' + data[1] +'<a>', data[4] + ' ETH', data[5] + ' ETH', date, name
-                       ]).draw();
-                       stt++;
-                       proid--;
+                       var urlview ='{{url('admin/auctions/viewbind')}}/'+data[0];
+                       getWinner(contract,data[0],function (awinner) {
+                           $('#allauctions').DataTable().row.add([
+                               stt, '<a href="'+urlview+'" title="Hiển thị danh sách người đặt đấu giá mua sản phẩm này">' + data[1] +'<a>', parseInt(data[4]) +1 + ' ETH', data[5] + ' ETH', date, '<font color="#ff0000">'+awinner[2]+'<font>' + '<br>'+awinner[1],name
+                           ]).draw();
+                           stt++;
+                       })
+
+
                    }
 
                })
@@ -66,7 +71,7 @@
         });
         function getstatus(status,date){
             var name;
-                name='<span style="color: #0505cd"> Bán thành công</span>';
+                name='<span style="color: #0505cd"> Hoàn thành</span>';
             return name;
         }
         function PushEndAuction(id){

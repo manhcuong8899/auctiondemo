@@ -11,8 +11,8 @@
         <ul class="treeview-menu">
             <li class="{{ setMenuActive('admin/create/products') }}"><a href="{{url('admin/create/products')}}"><i class="fa fa-plus"></i>Thêm mới sản phẩm</a></li>
             <li class="{{ setMenuActive('admin/products') }}"><a href="{{url('admin/products')}}"><i class="fa fa-list"></i>Tất cả sản phẩm</a></li>
-            <li class="{{ setMenuActive('admin/products/status/pending') }}"><a href="{{url('admin/products/status/pending')}}"><i class="fa fa-warning"></i>Chờ mở phiên</a></li>
-            <li class="{{ setMenuActive('admin/products/status/active') }}"><a href="{{url('admin/products/status/active')}}"><i class="fa fa-opencart"></i>Đã mở phiên</a></li>
+            <li class="{{ setMenuActive('admin/products/status/pending') }}"><a href="{{url('admin/products/status/pending')}}"><i class="fa fa-warning"></i>Mở phiên bán</a></li>
+            <li class="{{ setMenuActive('admin/products/status/active') }}"><a href="{{url('admin/products/status/active')}}"><i class="fa fa-opencart"></i>Đang mở phiên</a></li>
         </ul>
     </li>
     <li class="treeview {{setMenuActive('admin/auctions')}}">
@@ -24,7 +24,7 @@
         <ul class="treeview-menu">
             <li class="{{ setMenuActive('admin/auctions') }}"><a href="{{url('admin/auctions')}}"><i class="fa fa-list"></i>Danh sách phiên</a></li>
             <li class="{{ setMenuActive('admin/auctions/status/active') }}"><a href="{{url('admin/auctions/status/active')}}"><i class="fa fa-warning"></i>Phiên đang mở</a></li>
-            <li class="{{ setMenuActive('admin/auctions/status/finish') }}"><a href="{{url('admin/auctions/status/finish')}}"><i class="fa fa-close"></i>Phiên nhận coin</a></li>
+            <li class="{{ setMenuActive('admin/auctions/status/finish') }}"><a href="{{url('admin/auctions/status/finish')}}"><i class="fa fa-close"></i>Bán thành công</a></li>
             <li class="{{ setMenuActive('admin/auctions/status/success') }}"><a href="{{url('admin/auctions/status/success')}}"><i class="fa fa-close"></i>Phiên hoàn thành</a></li>
             <li class="{{ setMenuActive('admin/auctions/status/inactive') }}"><a href="{{url('admin/auctions/status/inactive')}}"><i class="fa fa-opencart"></i>Phiên không người đặt</a></li>
         </ul>

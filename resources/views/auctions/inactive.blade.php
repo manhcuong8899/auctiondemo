@@ -55,7 +55,7 @@
                    var name = getstatus(data[6]);
                    if(data[6]==2){
                        $('#allauctions').DataTable().row.add([
-                           stt,  data[1] , data[4] + ' ETH', data[5] + ' ETH', date, name
+                           stt,  data[1] , parseInt(data[4]) +1 + ' ETH', data[5] + ' ETH', date, name
                        ]).draw();
                        stt++;
                        proid--;

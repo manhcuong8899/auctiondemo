@@ -21,44 +21,22 @@ Trang chủ
                                    @if($checktime==1 && $list->status==1 )
                                     <a href="{{url($list->slug)}}"><button class="p-btn startus-openbind" value="{{$list->id}}">ĐANG MỞ ĐẤU GIÁ</button></a>
                                     @elseif($checktime==2 && $list->status==1)
-                                    <button class="p-btn startus-endtime"><b>HẾT THỜI GIAN PHIÊN</b></button>
+                                    <a href="{{url($list->slug)}}"><button class="p-btn startus-endtime"><b>HẾT THỜI GIAN PHIÊN</b></button></a>
                                     @elseif($checktime==2 && $list->status==2)
                                     <a href="{{url($list->slug)}}"><button class="p-btn startus-endbind"><b>KẾT THÚC PHIÊN</b></button></a>
                                     @else
                                         <button class="p-btn startus-notbind"><b>CHƯA MỞ ĐẤU GIÁ</b></button>
                                     @endif
-                            </div><h3><a href="{{url($list->slug)}}"><b> {{$list->name}}</b></a></h3>
+                            </div>
+                                <h3><a href="{{url($list->slug)}}"><b> {{$list->name}}</b></a></h3>
                             <h3><a href="{{url($list->slug)}}">Mã sản phẩm: {{$list->code}}</a></h3>
-                            <div class="price"><span>Giá sàn: {{number_format($list->price,'2',',','.')}} ETH</span></div>
+                            <div class="price"><span>Giá sàn: {{number_format($list->price +1,'2',',','.')}} ETH</span></div>
                         </div>
                     @endforeach
                 </div>
             </div>
     </div><!-- /.block-products -->
     @endforeach
-@if($countpview >0)
-    <div class="cols-list-auto list-01">
-        <div class="name-box">
-            <h2><a href="#"> <b>SẢN PHẨM ĐÃ XEM</b></a> </h2>
-        </div>
-        <div class="cols-list-content">
-            <div class="owl-carousel">
-                @foreach($pview as $index=>$alist )
-                    <div class="item">
-                        <div class="cover"><a href="{{url($alist->options->slug)}}"><img src="{{asset('public/images/products/'.$alist->options->model.'/'.$alist->options->images)}}"alt="{{$alist->name}}" class="imgresponsive"></a></div>
-                        <div class="info-color">
-                            <div class="number-of-colors">
-                                <a href="{{url($alist->options->slug)}}">{{$alist->name}}</a>
-                            </div>
-                        </div>
-                        <h3><a href="{{url($alist->options->slug)}}">Mã sản phẩm: {{$alist->options->code}}</a></h3>
-                        <div class="price"><span>Giá sàn: {{number_format($alist->price,'2',',','.')}} ETH</span></div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div><!-- /.block-products -->
-@endif
 @endsection
 @section('page-script')
 @endsection

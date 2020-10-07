@@ -215,7 +215,7 @@
                             </select>
                         </div>
                         <div class="row-input">
-                            <input class="f-login-input" type="text" placeholder="Địa chỉ" name="address">
+                            <input class="f-login-input" type="text" placeholder="Địa chỉ ví" name="wallet">
                         </div>
                         <div class="row-input">
                             <button type="button" class="login_button btn_create btn-black" id="submitregister">ĐĂNG KÝ</button>

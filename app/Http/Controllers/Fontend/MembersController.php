@@ -137,7 +137,7 @@ class MembersController extends Controller
 
         $profile=array(
             'phone'=>$phone,
-            'address'=>$request->address,
+            'wallet'=>$request->wallet,
             'city'=>$request->city,
             'user_id'=>$user->id,
             );

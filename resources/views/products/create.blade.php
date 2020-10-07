@@ -34,7 +34,7 @@
                                         <input type="text" name="quantity" class="form-control" id="quantity">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label for="title">Giá sàn</label>
+                                        <label for="title">Giá sản phẩm</label>
                                         <input type="text" name="price" class="form-control" id="price">
                                     </div>
                                     <div class="col-md-6 form-group">
