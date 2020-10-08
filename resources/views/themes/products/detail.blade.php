@@ -7,7 +7,7 @@
     <div class="container">
         <div class="product-detail">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <div class="product-img clearfix">
                         <div class="easyzoom easyzoom--adjacent easyzoom--with-thumbnails">
                             <a href="{{asset('public/images/products/'.$detailproduct->model.'/'.$detailproduct->images)}}">
@@ -28,7 +28,7 @@
                 <?php
                 $checktime = \App\Http\Controllers\Controller::checkendtime($detailproduct->starttime,$detailproduct->endtime);
                 ?>
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <h1 class="product-title">{{$detailproduct->name}}</h1>
                                        @if($detailproduct->cates->parent!=null)
                     <h2 class="product-subtitle">{{$detailproduct->cates->parent->name}}-{{$detailproduct->cates->name}}</h2>
@@ -60,8 +60,22 @@
                         <a href="{!! $settings['linkfanpage']!!}" class="facebook" TARGET="_blank"><i class="fa fa-facebook"></i></a>
                         <a href="{!! $settings['instagram']!!}" TARGET="_blank"><i class="fa fa-instagram"></i></a>
                     </div>
+                    <div>
+                        <b>Thời gian còn lại:</b> <span style="color: red" id="clock" class="timeclock"> </span>
+                    </div>
                     <div class="pi-pdpmainbody">
-                        <div id="clock" class="timeclock"></div>
+                            <h2 class="mTitle" align="center">TÀI KHOẢN THẮNG ĐẤU GIÁ</h2>
+                            <div class="nike-cq-table"><!-- top header -->
+                                <table class="nsg-text--medium-grey top" cellpadding="5" cellspacing="5">
+                                    <tbody id = "winner_tbody">
+                                    <tr class="nike-cq-table-header" style="height:65px;">
+                                        <th >Họ và tên</th>
+                                        <th style="width: 10%">Giá đặt</th>
+                                        <th >Thời gian đặt</th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div><!--/.tab-content-->
                     </div>
                 </div><!--/.col-->
             </div><!-- /.row-->
@@ -132,6 +146,20 @@
                 });
 
                 getStatus(contract,proid,function(status){
+                   if(status==3 || status==4){
+                       getWinner(contract,proid,function (awinner) {
+                           var date = new Date(awinner[5]*1000);
+                           $('#winner_tbody').append("<tr>" +
+                               "<td class='nsg-bg--white' style='height:40px; color:'>" +awinner[2] + "</td>" +
+                               "<td class='nsg-bg--white' style='height:40px; color: red'>" +awinner[4] + " ETH </td>" +
+                               "<td class='nsg-bg--white' style='height:40px; color: red'> " + date + "</td>"+
+                               "</tr>");
+                       })
+                   }else{
+                       $('#winner_tbody').append("<tr>" +
+                           "<td class='nsg-bg--white' style='height:40px;' colspan='3'>Giao dịch chưa xác nhận tài khoản thắng đấu giá</td>" +
+                           "</tr>");
+                   }
 
                 });
                 // Check điều kiện người dùng đã đăng nhập và đặt giá
@@ -139,7 +167,7 @@
                 var bidder ='{{Auth::user()->profile->wallet}}';
                 var buy_name ='{{Auth::user()->full_name}}';
                 var buy_email ='{{Auth::user()->email}}';
-                getUserBind(contract,bidder,function (Products){
+                getUserBind(contract,function (Products){
                     var numbers = Products.length;
                     for(var i=0; i<=numbers-1; i++){
                         if(Products[i]==proid) {

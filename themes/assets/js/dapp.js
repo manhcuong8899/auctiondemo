@@ -617,7 +617,7 @@ function createProduct(contractaddress,p_id,seller,p_name,p_start,p_deadline,p_p
                 getTransactionStatus(result,function (block) {
                     getblock(block);
                 });
-            }, 50000);
+            },50000);
             clearTimeout();
         };
     });
@@ -752,8 +752,9 @@ function getRefundValue(contractaddress,binder,value){
 };
 
 //10. Hàm Người dùng rút tiền từ giao dịch hoàn thành
-function ruttien(contractaddress) {
-    var MyContract = web3.eth.contract(abi).at(contractaddress).withdrawRefund.sendTransaction(
+function ruttien(contractaddress,bidder) {
+    var MyContract = web3.eth.contract(abi).at(contractaddress).withdrawRefund.sendTransaction({
+            from:bidder},
         function(err, result){
             if (err){
                 alert('Xử lý nhận coi không thành công! Kiểm tra địa chỉ Ví');
