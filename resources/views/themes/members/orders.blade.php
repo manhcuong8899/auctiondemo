@@ -144,7 +144,7 @@
           $('[name="withraw"]').html(value + ',00');
           if(value>0){
               $('#withraweth').click(function(){
-                  ruttien(contractaddress);
+                  ruttien(contract);
               });
           }else{
               $('#withraweth').css("display", "none");
