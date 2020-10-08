@@ -140,7 +140,16 @@
                 })
             }
         })
-
+      getRefundValue(contract,wallet,function(value){
+          $('[name="withraw"]').html(value + ',00');
+          if(value>0){
+              $('#withraweth').click(function(){
+                  ruttien(contractaddress);
+              });
+          }else{
+              $('#withraweth').css("display", "none");
+          }
+      })
         @endif
     </script>
 @endsection

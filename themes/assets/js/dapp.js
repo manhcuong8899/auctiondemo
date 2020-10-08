@@ -787,12 +787,3 @@ function getHistoryCount(contractaddress,binder,totalhis){
             };
         });
 };
-
-
-function GetFormattedDate(date) {
-    var todayTime = new Date(date);
-    var month = format(todayTime .getMonth() + 1);
-    var day = format(todayTime .getDate());
-    var year = format(todayTime .getFullYear());
-    return month + "/" + day + "/" + year;
-}
