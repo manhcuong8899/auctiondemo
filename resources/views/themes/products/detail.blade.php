@@ -167,7 +167,7 @@
                 var bidder ='{{Auth::user()->profile->wallet}}';
                 var buy_name ='{{Auth::user()->full_name}}';
                 var buy_email ='{{Auth::user()->email}}';
-                getUserBind(contract,function (Products){
+                getUserBind(contract,bidder,function (Products){
                     var numbers = Products.length;
                     for(var i=0; i<=numbers-1; i++){
                         if(Products[i]==proid) {
