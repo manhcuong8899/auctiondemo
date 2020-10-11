@@ -149,11 +149,14 @@
                    if(status==3 || status==4){
                        getWinner(contract,proid,function (awinner) {
                            var date = new Date(awinner[5]*1000);
-                           $('#winner_tbody').append("<tr>" +
-                               "<td class='nsg-bg--white' style='height:40px; color:'>" +awinner[2] + "</td>" +
-                               "<td class='nsg-bg--white' style='height:40px; color: red'>" +awinner[4] + " ETH </td>" +
-                               "<td class='nsg-bg--white' style='height:40px; color: red'> " + date + "</td>"+
-                               "</tr>");
+                           getBidProduct(contract,proid,awinner[0],function (abid) {
+                               $('#winner_tbody').append("<tr>" +
+                                   "<td class='nsg-bg--white' style='height:40px; color:'>" +awinner[2] + "</td>" +
+                                   "<td class='nsg-bg--white' style='height:40px; color: red'>" +abid[4] + " ETH </td>" +
+                                   "<td class='nsg-bg--white' style='height:40px; color: red'> " + date + "</td>"+
+                                   "</tr>");
+                           })
+
                        })
                    }else{
                        $('#winner_tbody').append("<tr>" +

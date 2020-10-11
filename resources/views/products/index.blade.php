@@ -215,7 +215,7 @@
                 data: {_method: 'post', _token: '{{csrf_token()}}', proId: id}
             }).done(function(data){
                createProduct(contractaddress,data.id,seller,data.name,data.starttime,data.endtime,data.price,function (getblock){
-                  if(getblock!=null){
+                  if(getblock==true){
                       getProductCount(contractaddress,function(Total){
                               $.ajax({
                                   url: urlpro,
@@ -230,7 +230,7 @@
                               });
                       });
                   }else{
-                      alert('Lỗi không đồng bộ thời gian xử lý giao dịch');
+                      alert('Lỗi, Buồn quá');
                   }
                });
             }).fail(function(data){

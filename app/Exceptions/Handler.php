@@ -51,9 +51,9 @@ class Handler extends ExceptionHandler
             Flash::warning(trans('VNPCMS.messages.sessionexpired'));
             return redirect()->back()->withInput()->with('error', trans('VNPCMS.messages.sessionexpired'));
         }
-		/*if ($e instanceof \Exception) {
+		if ($e instanceof \Exception) {
             return redirect('/');
-        }*/
+        }
         return parent::render($request, $e);
     }
 }

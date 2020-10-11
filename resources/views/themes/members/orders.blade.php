@@ -102,7 +102,7 @@
                     queryProduct(contract,data[0],function (data_product){
                         var p_name =data_product[1];
                         getBidProduct(contract,data[0],data[1],function (data_bind){
-                            var bid_status = data_bind[5];
+                            var bid_status = data_bind[6];
                             $('#all_tbody').append("<tr>" +
                                 "<td class='nsg-bg--white' style='height:40px;'>"+ all + "</td>" +
                                 "<td class='nsg-bg--white' style='height:40px;'>" +p_name + "</td>" +

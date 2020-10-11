@@ -87,8 +87,7 @@
         }
         function PushEndAuction(id){
             var contract = '{{CRMSettings('contractaddress')}}';
-            endAuction(contract,id,function(kq) {
-                location.reload();
+            endAuction(contract,id,function(kq){
             });
         }
         function Getcoin(id){

@@ -61,7 +61,7 @@
                        var urlview ='{{url('admin/auctions/viewbind')}}/'+data[0];
                        getWinner(contract,data[0],function (awinner) {
                            $('#allauctions').DataTable().row.add([
-                               stt, '<a href="'+urlview+'" title="Hiển thị danh sách người đặt đấu giá mua sản phẩm này">' + data[1] +'<a>', parseInt(data[4]) +1 + ' ETH', data[5] + ' ETH', date,'<font color="#ff0000">'+awinner[2]+'<font>' + '<br>'+awinner[1], name,html
+                               stt, '<a href="'+urlview+'" title="Hiển thị danh sách người đặt đấu giá mua sản phẩm này">' + data[1] +'<a>', parseInt(data[4]) +1 + ' ETH','<span style="color: darkgreen"> <b>'+ data[5] + ' ETH</b></span>', date,'<font color="#ff0000">'+awinner[2]+'<font>' + '<br>'+awinner[1], name,html
                            ]).draw();
                            stt++;
                        });
@@ -85,7 +85,6 @@
         function PushEndAuction(id){
             var contract = '{{CRMSettings('contractaddress')}}';
             endAuction(contract,id,function(kq) {
-                location.reload();
             });
         }
         function Getcoin(id){

@@ -499,6 +499,11 @@ var abi=[
             },
             {
                 "indexed": false,
+                "name": "pid",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
                 "name": "p_name",
                 "type": "string"
             },
@@ -608,20 +613,29 @@ var Web3 = require('web3');
 var web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/v3/b7f2ce93c320460eaaef396b9f547f7b'));
 
 //1. Call createProduct
-function createProduct(contractaddress,p_id,seller,p_name,p_start,p_deadline,p_price, getblock){
+function createProduct(contractaddress,p_id,seller,p_name,p_start,p_deadline,p_price,getblock){
     var MyContract = web3.eth.contract(abi).at(contractaddress).createProduct(p_id,seller,p_name,p_start,p_deadline,p_price,function(err, result){
         if (err){
             alert('Hủy tạo phiên đấu giá mua sản phẩm');
         } else {
-            setTimeout(function (){
-                getTransactionStatus(result,function (block) {
-                    getblock(block);
-                });
-            },50000);
-            clearTimeout();
+          getEVproductcreate(contractaddress,p_id,function (check){
+              getblock(check);
+          });
         };
     });
 };
+
+function getEVproductcreate(contractaddress,p_id,check){
+    var MyContract = web3.eth.contract(abi).at(contractaddress);
+    var myEvent = MyContract.ProductCreated({pid: p_id}, {fromBlock:'latest'});
+        myEvent.watch(function(error, result){
+            var success=false;
+            if (result){
+                success=true;
+            }
+            check(success);
+    });
+}
 //2. Đếm tổng số sản phẩm đưa lên sàn
 function getProductCount(contractaddress,total){
     var MyContract = web3.eth.contract(abi).at(contractaddress).getProductCount.call(function(err, result){
