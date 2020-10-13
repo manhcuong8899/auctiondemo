@@ -39,7 +39,7 @@
                         <div class="price">Giá hiện tại: <span class="old" id="current" name="current">{{$detailproduct->price}} ETH</span></div>
                     <div class="product-button">
                         <input class="p-btn btn-qty" required type="number" step="1" min="{{$detailproduct->price}}" name="bindprice" id="bindprice" value="{{$detailproduct->price+1}}">
-                        <button class="p-btn add-to-bind" id="placeBind" value="{{$detailproduct->id}}">ĐẶT GIÁ</button>
+                        <button class="p-btn add-to-bind" id="placeBind" value="{{$detailproduct->bind}}">ĐẶT GIÁ</button>
                     </div>
                     @endif
                     @if($checktime==2 && $detailproduct->status==2)
